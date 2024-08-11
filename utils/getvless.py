@@ -35,8 +35,8 @@ def decrypt_rsa(data):
 
 
 def decrypt_aes(data):
-    key = vless_private_key.encode('utf-8')
-    iv = vless_authorization.encode('utf-8')
+    key = private_key.encode('utf-8')
+    iv = authorization.encode('utf-8')
     cipher = AES.new(key, AES.MODE_CBC, iv)
     decrypted_data = unpad(cipher.decrypt(base64.b64decode(data)), AES.block_size)
     return decrypted_data.decode()
@@ -80,8 +80,8 @@ def get_node():
 
 if __name__ == '__main__':
     api = os.environ['vless_api']
-    vless_private_key = os.environ['vless_private_key']
-    vless_authorization = os.environ['vless_authorization']
+    private_key = os.environ['vless_private_key']
+    authorization = os.environ['vless_authorization']
     get_node()
     message = '#vless ' + '#订阅' + '\n' + datetime.now().strftime("%Y年%m月%d日%H:%M:%S") + '\n' + 'vless订阅每天自动更新：' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/vless'
     send_message(os.environ['chat_id'], message, os.environ['bot_token'])
