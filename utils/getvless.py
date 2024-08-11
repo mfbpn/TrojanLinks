@@ -49,7 +49,7 @@ def get_node():
         'Accept-Encoding': 'gzip, deflate',
         'Cache-Control': 'max-age=0'
     }
-    req = requests.get(url, headers=head).json()
+    req = requests.get(url, headers=header).json()
     node_info = decrypt_aes(req['data'])
     Vless = ''
     for server_list in json.loads(node_info):
