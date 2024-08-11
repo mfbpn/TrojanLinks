@@ -23,7 +23,29 @@ from Telegram_bot import send_message
 urllib3.disable_warnings()
 
 
+def invite():
+    url = f'{api}/addRefereeToUserReferral/'
+    headers = {
+        'accept': 'application/json',
+        'accept-charset': 'UTF-8',
+        'cache-control': 'max-age=1800',
+        'user-agent': 'Ktor client',
+        'content-type': 'application/x-www-form-urlencoded',
+        'content-length': '0',
+        'accept-encoding': 'gzip'
 
+    }
+    number = 0
+    while number < 3:
+        Id = uuid.uuid4()
+        data = {
+            'uniqueId': Id,
+            'referralCode': 'D4GOLG'
+        }
+        req = requests.post(url, data=data, headers=headers, verify=False)
+        print(req.text)
+        number += 1
+        time.sleep(3)
 
 
 def decrypt_rsa(data):
@@ -33,10 +55,9 @@ def decrypt_rsa(data):
     return decrypted_message.decode()
 
 
-
-def decrypt_aes(data):
-    key = private_key.encode('utf-8')
-    iv = authorization.encode('utf-8')
+def decrypt_aes(key, data):
+    key = MD5.new(key.encode()).digest()
+    iv = b'\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f'
     cipher = AES.new(key, AES.MODE_CBC, iv)
     decrypted_data = unpad(cipher.decrypt(base64.b64decode(data)), AES.block_size)
     return decrypted_data.decode()
@@ -44,22 +65,27 @@ def decrypt_aes(data):
 
 def get_node():
     url = api
-    header =  {
-        'user-agent': 'Mozilla/5.0 (Linux; U; Android 7.1.0; zh-cn; MI 9 Build/OPM1.171019.011) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/61.0.3163.128 Mobile Safari/537.36 XiaoMi/MiuiBrowser/9.5.5',
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-        'accept-encoding': 'gzip, deflate',
-        'accept-language': 'zh-CN,en-US;q=0.8',
+    header = {
+        'authorization': authorization,
+        'cache-control': 'no-cache',
+        'accept': 'application/json',
+        'accept-charset': 'UTF-8',
+        'user-agent': 'Ktor client',
+        'content-type': 'text/plain;charset=UTF-8',
+        'content-length': '0',
+        'accept-encoding': 'gzip'
     }
-    data = f"email={123456}&aid=1459&language=en&account_sdk_source=web&region=SA"
-    req = requests.get(url, data=data, headers=header, verify=False).json()
-    node_info = decrypt_aes(req['data'])
+    req = requests.post(url, data=text, headers=header, verify=False).json()
+    key = req['key']
+    key = decrypt_rsa(key)
+    node_info = decrypt_aes(key, req['data'])
     Vless = ''
     for server_list in json.loads(node_info):
-        if server_list['title']:
-            for title in server_list['title']:
-                if title:
-                    server = title['server']
-                    ip = title['ip']
+        if server_list['servers']:
+            for servers in server_list['servers']:
+                if servers:
+                    server = servers['server']
+                    ip = servers['ip']
                     if ip:
                         url = f'https://ip125.com/api/{ip}?lang=zh-CN'
                         head = {
@@ -68,7 +94,9 @@ def get_node():
                         }
                         country_info = requests.get(url, headers=head).json()
                         address = country_info['country'] + country_info['city']
-                        vless = 'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDU=' + '@' + ip + ':' + '443' + '#' + '%F0%9F%87%AD%F0%9F%87%B0%20%F0%9D%99%8F%F0%9D%99%82%40%F0%9D%99%88%F0%9D%99%81%F0%9D%98%BD%F0%9D%99%8B%F0%9D%99%89%200'
+                        a = server.split('@')
+                        b = a[1].split(':')[1].split('#')
+                        vless = a[0] + '@' + ip + ':' + b[0] + '#' + address + '|TG频道@MFBPN'
                         Vless += vless + '\n'
                     else:
                         print(server)
@@ -85,6 +113,7 @@ if __name__ == '__main__':
     private_key = os.environ['vless_private_key']
     authorization = os.environ['vless_authorization']
     text = os.environ['vless_text']
+    invite()
     get_node()
-    message = '#vless ' + '#订阅' + '\n' + datetime.now().strftime("%Y年%m月%d日%H:%M:%S") + '\n' + 'vless订阅每天自动更新：' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/vless'
+    message = '#vless ' + '#订阅' + '\n' + datetime.now().strftime("%Y年%m月%d日%H:%M:%S") + '\n' + 'vless订阅每天自动更新：' + '\n' + 'https://raw.githubusercontent.com/Huibq/TrojanLinks/master/links/vless'
     send_message(os.environ['chat_id'], message, os.environ['bot_token'])
