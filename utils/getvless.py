@@ -32,7 +32,6 @@ def decrypt_rsa(data):
     decrypted_message = cipher.decrypt(base64.b64decode(data))
     return decrypted_message.decode()
 
-.encode('utf-8')
 
 
 def decrypt_aes(data):
