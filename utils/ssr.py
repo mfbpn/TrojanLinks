@@ -53,7 +53,7 @@ Id = str(uuid.uuid4()).replace("-", "")
 
 
 def web():
-    url = f'https://{host}/?share=MjExMDc1NDMTUBEVPN'
+    url = f'https://{host}/?share=Mzc4MDUxODITUBEVPN'
     headers = {
         'upgrade-insecure-requests': '1',
         'user-agent': 'Mozilla/5.0 (Linux; U; Android 7.1.0; zh-cn; MI 9 Build/OPM1.171019.011) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/61.0.3163.128 Mobile Safari/537.36 XiaoMi/MiuiBrowser/9.5.5',
@@ -74,7 +74,7 @@ def add_share():
         'accept-encoding': 'gzip, deflate',
         'accept': 'application/json, text/javascript, */*; q=0.01',
         'origin': f'https://{host_1}',
-        'referer': f'https://{host_1}/?share=MjExMDc1NDMTUBEVPN',
+        'referer': f'https://{host_1}/?share=Mzc4MDUxODITUBEVPN',
         'accept-language': 'zh-CN,en-US;q=0.8',
     }
     data = {
@@ -87,12 +87,12 @@ def add_share():
 def get_login():
     url = f'https://{host_2}/node/getInformation_ex'
     headers = {
-        'user-agent': 'Mozilla/5.0 (Linux; Android 7.1.0; MI 6 Build/OPM1.171019.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/62.0.3202.84 Mobile Safari/537.36',
+        'user-agent': 'Mozilla/5.0 (Linux; Android 11; M2007J17C Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/127.0.6533.64 Mobile Safari/537.36',
         'content-type': 'application/x-www-form-urlencoded',
-        'content-length': '0',
+        'content-length': '407',
         'accept-encoding': 'gzip',
     }
-    text = f'{{"imei":"{Id}","platform":"android","version_number":46,"models":"MI 9","sdk":"30","m":"1572F5F911FFDF9028B4A2F763C310F0","c":4}}'
+    text = f'{{"imei":"{Id}","platform":"android","version_number":58,"models":"M2007J17C","sdk":"30","m":"AF9650E2172392113DCCD46E81046CC9","c":4}}'
     value = AESecb.encrypt(text).upper()
     now = datetime.now()
     formatted_time = now.strftime("%Y年%m月%d日%H:%M:%S")
