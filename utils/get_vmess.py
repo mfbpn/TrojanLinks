@@ -82,7 +82,7 @@ if __name__ == "__main__":
     for i in List:
         try:
             vmess_dict = json.loads(base64.b64decode(decrypt(get_vmess(i), vemss_key)[8:]).decode())
-            vmess_dict['ps'] = 'Github搜索TrojanLinks'
+            vmess_dict['ps'] = 'TG频道@MFBPN'
             nodes.append("vmess://" + base64.b64encode(json.dumps(vmess_dict).encode()).decode() + '\n')
         except Exception as e:
             print(e)
