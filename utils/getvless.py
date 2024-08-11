@@ -83,6 +83,7 @@ if __name__ == '__main__':
     api = os.environ['vless_api']
     private_key = os.environ['vless_private_key']
     authorization = os.environ['vless_authorization']
+    text = os.environ['vless_text']
     get_node()
     message = '#vless ' + '#订阅' + '\n' + datetime.now().strftime("%Y年%m月%d日%H:%M:%S") + '\n' + 'vless订阅每天自动更新：' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/vless'
     send_message(os.environ['chat_id'], message, os.environ['bot_token'])
