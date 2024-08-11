@@ -50,6 +50,7 @@ def get_node():
         'accept-encoding': 'gzip, deflate',
         'accept-language': 'zh-CN,en-US;q=0.8',
     }
+    data = ''
     req = requests.post(url, data=data, headers=header, verify=False).json()
     node_info = decrypt_aes(req['data'])
     Vless = ''
