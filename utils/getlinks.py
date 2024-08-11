@@ -112,7 +112,7 @@ def main():
             result = int(random.random() * len(port))
             sb.append(str(port[result]))
             sb.append("?security=tls&alpn=h2,http/1.1&type=tcp&sni=appsvs.shop&headerType=none#")
-            sb.append(link['d'] + '|Github搜索TrojanLinks')
+            sb.append(link['d'] + '|TG频道@MFBPN')
             sb.append("\n")
         trojan_links = base64.b64encode((''.join(sb)).encode('utf-8')).decode()
         with open("./links/trojan", "w") as f:
