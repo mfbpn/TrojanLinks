@@ -45,9 +45,7 @@ def decrypt_aes(data):
 def get_node():
     url = api
     header =  {
-        'upgrade-insecure-requests': '1',
         'user-agent': 'Mozilla/5.0 (Linux; U; Android 7.1.0; zh-cn; MI 9 Build/OPM1.171019.011) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/61.0.3163.128 Mobile Safari/537.36 XiaoMi/MiuiBrowser/9.5.5',
-        'x-miorigin': 'b',
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
         'accept-encoding': 'gzip, deflate',
         'accept-language': 'zh-CN,en-US;q=0.8',
