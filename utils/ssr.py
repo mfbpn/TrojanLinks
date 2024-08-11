@@ -112,7 +112,7 @@ if __name__ == '__main__':
         node_list = json.loads(AESecb.decrypt(get_login()))['goserverlist']
         SSR = ''
         for i in node_list:
-            name = i['name'] + '|Github搜索TrojanLinks'
+            name = 'TG频道@MFBPN'
             host = i['host']
             remotePort = i['remotePort']
             password = i['password']
@@ -131,5 +131,5 @@ if __name__ == '__main__':
             f.write(base64.b64encode(SSR.encode()).decode())
     except Exception as E:
         print(E)
-    message = '#ssr ' + '#订阅' + '\n' + datetime.now().strftime("%Y年%m月%d日%H:%M:%S") + '\n' + 'ssr订阅每天自动更新：' + '\n' + 'https://raw.githubusercontent.com/Huibq/TrojanLinks/master/links/ssr'
+    message = '#ssr ' + '#订阅' + '\n' + datetime.now().strftime("%Y年%m月%d日%H:%M:%S") + '\n' + 'ssr订阅每天自动更新：' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/ssr'
     send_message(os.environ['chat_id'], message, os.environ['bot_token'])
