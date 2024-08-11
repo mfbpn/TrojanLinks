@@ -51,7 +51,7 @@ def get_node():
         'accept-language': 'zh-CN,en-US;q=0.8',
     }
     data = ''
-    req = requests.post(url, data=data, headers=header, verify=False).json()
+    req = requests.get(url, data=data, headers=header, verify=False).json()
     node_info = decrypt_aes(req['data'])
     Vless = ''
     for server_list in json.loads(node_info):
