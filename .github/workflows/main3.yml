@@ -35,11 +35,11 @@ jobs:
     - name: 执行任务
       env:
         vless_api: ${{secrets.vless_api}}
-        # vless_private_key: ${{secrets.vless_private_key}}
-        # vless_authorization: ${{secrets.vless_authorization}}
-        # vless_text: ${{secrets.vless_text}}
-        private_key: ${{secrets.vless_secrets}}
-        private_iv: ${{secrets.vless_iv}}
+        vless_private_key: ${{secrets.vless_private_key}}
+        vless_authorization: ${{secrets.vless_authorization}}
+        vless_text: ${{secrets.vless_text}}
+        # private_key: ${{secrets.vless_secrets}}
+        # private_iv: ${{secrets.vless_iv}}
         bot_token: ${{secrets.bot_token}}
         chat_id: ${{secrets.chat_id}}
       run: |
