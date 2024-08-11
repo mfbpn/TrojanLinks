@@ -96,7 +96,7 @@ def get_node():
                         address = country_info['country'] + country_info['city']
                         a = server.split('@')
                         b = a[1].split(':')[1].split('#')
-                        vless = a[0] + '@' + ip + ':' + b[0] + '#' + address + '|Github搜索TrojanLinks'
+                        vless = a[0] + '@' + ip + ':' + b[0] + '#' + address + '|TG频道@MFBPN'
                         Vless += vless + '\n'
                     else:
                         print(server)
@@ -115,5 +115,5 @@ if __name__ == '__main__':
     text = os.environ['vless_text']
     invite()
     get_node()
-    message = '#vless ' + '#订阅' + '\n' + datetime.now().strftime("%Y年%m月%d日%H:%M:%S") + '\n' + 'vless订阅每天自动更新：' + '\n' + 'https://raw.githubusercontent.com/Huibq/TrojanLinks/master/links/vless'
+    message = '#vless ' + '#订阅' + '\n' + datetime.now().strftime("%Y年%m月%d日%H:%M:%S") + '\n' + 'vless订阅每天自动更新：' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/vless'
     send_message(os.environ['chat_id'], message, os.environ['bot_token'])
