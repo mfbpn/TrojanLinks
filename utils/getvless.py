@@ -44,13 +44,16 @@ def decrypt_aes(data):
 
 def get_node():
     url = api
-    heade = {
-        'User-Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-        'Accept-Encoding': 'gzip, deflate',
-        'Cache-Control': 'max-age=0',
-        'Cookie': 'PHPSESSID=e4dg1f5m17umob0tp4j1v97o11'
+    header = {
+        'cache-control': 'no-cache',
+        'accept': 'application/json',
+        'accept-charset': 'UTF-8',
+        'user-agent': 'Ktor client',
+        'content-type': 'text/plain;charset=UTF-8',
+        'content-length': '0',
+        'accept-encoding': 'gzip'
     }
-    req = requests.get(url, headers=heade).json()
+    req = requests.get(url, headers=header).json()
     node_info = decrypt_aes(req['data'])
     Vless = ''
     for server_list in json.loads(node_info):
