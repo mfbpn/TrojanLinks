@@ -29,19 +29,14 @@ urllib3.disable_warnings()
 def decrypt_aes(data):
     iv = b'\x08\x08\x0c\x0a\x00\x0f\x00\x0e\x0a\x01\x0e\x0c\x0f\x09\x07\x05'
     cipher = AES.new(private_key.encode(), AES.MODE_CBC, authorization.encode())
-    data_len = len(data)
-    print(data_len)
-    #plaintext = pad(data, 16)
-    #decrypted_data = unpad(cipher.decrypt(base64.b64decode(data)), AES.block_size)
+    # data_len = len(data)
+    # print(data_len)
     decrypted_data = unpad(cipher.decrypt(a2b_hex(data)), AES.block_size)
-    #strdecrypted_datastr = str(decrypted_data, encoding = "utf-8")
-    print(decrypted_data)
-    #print(decrypted_data.encode('utf8').decode('unicode_escape'))
+    # print(decrypted_data)
     return decrypted_data.decode('utf8')
 
 
 def get_node():
-    # -- coding: utf-8 --**
     url = api
     headers = {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 10; MI 9 MIUI/20.9.4)"}
     req = requests.get(url, headers=headers, verify=False).content
@@ -50,7 +45,7 @@ def get_node():
     Vless = ''
     for i in node_list :
         host = i['ip']
-        vless = 'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDU=' + '@' + host + ':' + '443' + '#' + '%F0%9F%87%AD%F0%9F%87%B0%20%F0%9D%99%8F%F0%9D%99%82%40%F0%9D%99%88%F0%9D%99%81%F0%9D%98%BD%F0%9D%99%8B%F0%9D%99%89%200'
+        vless = 'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDU=' + '@' + host + ':' + '443' + '#' + '%F0%9F%87%AD%F0%9F%87%B0%20%F0%9D%99%8F%F0%9D%99%82%40%F0%9D%99%88%F0%9D%99%81%F0%9D%98%BD%F0%9D%99%8B%F0%9D%99%89'
         Vless += vless + '\n'
         if i == node_list[11]:
             break
