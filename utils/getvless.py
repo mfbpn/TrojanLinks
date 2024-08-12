@@ -28,7 +28,7 @@ urllib3.disable_warnings()
 
 def decrypt_aes(data):
     iv = b'\x08\x08\x0c\x0a\x00\x0f\x00\x0e\x0a\x01\x0e\x0c\x0f\x09\x07\x05'
-    cipher = AES.new(private_key.encode(), AES.MODE_CBC, iv)
+    cipher = AES.new(private_key.encode(), AES.MODE_CBC, authorization)
     data_len = len(data)
     print(data_len)
     #plaintext = pad(data, 16)
