@@ -112,7 +112,7 @@ if __name__ == '__main__':
         node_list = json.loads(AESecb.decrypt(get_login()))['goserverlist']
         SSR = ''
         for i in node_list:
-            name = 'TG频道@MFBPN'
+            name = '𝙏𝙂@𝙈𝙁𝘽𝙋𝙉'
             host = i['host']
             remotePort = i['remotePort']
             password = i['password']
