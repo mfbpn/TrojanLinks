@@ -55,9 +55,9 @@ def decrypt_rsa(data):
     return decrypted_message.decode()
 
 
-def decrypt_aes(key, data):
-    key = MD5.new(key.encode()).digest()
-    iv = b'\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f'
+def decrypt_aes(data):
+    key = private_key
+    iv = authorization
     cipher = AES.new(key, AES.MODE_CBC, iv)
     decrypted_data = unpad(cipher.decrypt(base64.b64decode(data)), AES.block_size)
     return decrypted_data.decode()
@@ -65,20 +65,9 @@ def decrypt_aes(key, data):
 
 def get_node():
     url = api
-    header = {
-        'authorization': authorization,
-        'cache-control': 'no-cache',
-        'accept': 'application/json',
-        'accept-charset': 'UTF-8',
-        'user-agent': 'Ktor client',
-        'content-type': 'text/plain;charset=UTF-8',
-        'content-length': '0',
-        'accept-encoding': 'gzip'
-    }
-    req = requests.post(url, data=text, headers=header, verify=False).json()
-    key = req['key']
-    key = decrypt_rsa(key)
-    node_info = decrypt_aes(key, req['data'])
+    headers = {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 10; MI 9 MIUI/20.9.4)"}
+    req = requests.get(url, headers=header)
+    node_info = decrypt_aes(req.text)
     Vless = ''
     for server_list in json.loads(node_info):
         if server_list['servers']:
@@ -94,9 +83,7 @@ def get_node():
                         }
                         country_info = requests.get(url, headers=head).json()
                         address = country_info['country'] + country_info['city']
-                        a = server.split('@')
-                        b = a[1].split(':')[1].split('#')
-                        vless = a[0] + '@' + ip + ':' + b[0] + '#' + address + '|TG频道@MFBPN'
+                        vless = 'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDU=' + '@' + ip + ':' + '443' + '#' + '%F0%9F%87%AD%F0%9F%87%B0%20%F0%9D%99%8F%F0%9D%99%82%40%F0%9D%99%88%F0%9D%99%81%F0%9D%98%BD%F0%9D%99%8B%F0%9D%99%89%200'
                         Vless += vless + '\n'
                     else:
                         print(server)
@@ -112,8 +99,8 @@ if __name__ == '__main__':
     api = os.environ['vless_api']
     private_key = os.environ['vless_private_key']
     authorization = os.environ['vless_authorization']
-    text = os.environ['vless_text']
-    invite()
+    #text = os.environ['vless_text']
+    #invite()
     get_node()
-    message = '#vless ' + '#订阅' + '\n' + datetime.now().strftime("%Y年%m月%d日%H:%M:%S") + '\n' + 'vless订阅每天自动更新：' + '\n' + 'https://raw.githubusercontent.com/Huibq/TrojanLinks/master/links/vless'
+    message = '#vless ' + '#订阅' + '\n' + datetime.now().strftime("%Y年%m月%d日%H:%M:%S") + '\n' + 'vless订阅每天自动更新：' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/vless'
     send_message(os.environ['chat_id'], message, os.environ['bot_token'])
