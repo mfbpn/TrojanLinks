@@ -29,7 +29,7 @@ def decrypt_aes(data):
     cipher = AES.new(private_key.encode(), AES.MODE_CBC, iv)
     data = pad(data, AES.block_size)
     decrypted_data = unpad(cipher.decrypt(base64.b64decode(data)), AES.block_size)
-    return decrypted_data.decode()
+    return str(decrypted_data)
 
 
 def get_node():
