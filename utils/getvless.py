@@ -31,6 +31,7 @@ def decrypt_aes(data):
     cipher = AES.new(private_key.encode(), AES.MODE_CBC, authorization)
     data_len = len(data)
     print(data_len)
+    print(data)
     #plaintext = pad(data, 16)
     #decrypted_data = unpad(cipher.decrypt(base64.b64decode(data)), AES.block_size)
     decrypted_data = unpad(cipher.decrypt(a2b_hex(data)), AES.block_size)
@@ -45,9 +46,10 @@ def get_node():
     url = api
     headers = {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 10; MI 9 MIUI/20.9.4)"}
     req = requests.get(url, headers=headers, verify=False).content
-    encrypted_data = str(req)
-    print(req)
-    node_list = json.loads(str(decrypt_aes(req)))['title']
+    encrypted_data = str(req, encoding = "utf-8")
+    #encrypted_data = str(req)
+    #print(req)
+    node_list = json.loads(str(decrypt_aes(encrypted_data)))['title']
     Vless = ''
     for i in node_list :
         host = i['ip']
