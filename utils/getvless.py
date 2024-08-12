@@ -23,7 +23,7 @@ from Telegram_bot import send_message
 urllib3.disable_warnings()
 
 
-def decrypt_aes(data):
+def decrypt_aes(data: str) -> str:
     key = private_key
     iv = authorization
     cipher = AES.new(key, AES.MODE_CBC, iv)
