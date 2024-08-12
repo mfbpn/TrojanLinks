@@ -37,7 +37,7 @@ def decrypt_aes(data):
     #strdecrypted_datastr = str(decrypted_data, encoding = "utf-8")
     print(decrypted_data)
     #print(decrypted_data.encode('utf8').decode('unicode_escape'))
-    return decrypted_data.encode('utf8')
+    return decrypted_data.decode('utf8')
 
 
 def get_node():
