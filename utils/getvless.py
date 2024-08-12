@@ -34,7 +34,7 @@ def decrypt_aes(data):
 def get_node():
     url = api
     headers = {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 10; MI 9 MIUI/20.9.4)"}
-    req = requests.get(url, headers=header)
+    req = requests.get(url, headers=headers)
     node_info = json.loads(decrypt_aes(req.text))['goserverlist']
     Vless = ''
     for i in node_info :
