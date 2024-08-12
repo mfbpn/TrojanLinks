@@ -33,9 +33,9 @@ def decrypt_aes(data):
     #plaintext = pad(data, 16)
     #decrypted_data = unpad(cipher.decrypt(base64.b64decode(data)), AES.block_size)
     decrypted_data = unpad(cipher.decrypt(a2b_hex(data)), AES.block_size)
-    str(decrypted_data, encoding = "utf-8")
-    print(decrypted_data.encode('utf8').decode('unicode_escape'))
-    return decrypted_data.encode('utf8').decode('unicode_escape')
+    strdecrypted_datastr = str(decrypted_data, encoding = "utf-8")
+    print(strdecrypted_datastr.encode('utf8').decode('unicode_escape'))
+    return strdecrypted_datastr.encode('utf8').decode('unicode_escape')
 
 
 def get_node():
