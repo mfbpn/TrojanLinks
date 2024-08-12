@@ -37,8 +37,8 @@ def decrypt_aes(data):
     decrypted_data = unpad(cipher.decrypt(a2b_hex(data)), AES.block_size)
     #strdecrypted_datastr = str(decrypted_data, encoding = "utf-8")
     #print(decrypted_data)
-    #print(strdecrypted_datastr.encode('utf8').decode('unicode_escape'))
-    return strdecrypted_datastr.encode('utf8')
+    #print(decrypted_data.encode('utf8').decode('unicode_escape'))
+    return decrypted_data.encode('utf8')
 
 
 def get_node():
@@ -46,7 +46,7 @@ def get_node():
     url = api
     headers = {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 10; MI 9 MIUI/20.9.4)"}
     req = requests.get(url, headers=headers, verify=False).content
-    print(req)
+    #print(req)
     node_list = json.loads(str(decrypt_aes(req)))['title']
     Vless = ''
     for i in node_list :
