@@ -36,8 +36,9 @@ def get_node():
     url = api
     headers = {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 10; MI 9 MIUI/20.9.4)"}
     req = requests.get(url, headers=headers, verify=False).text
-    print(req)
-    node_list = json.loads(str(decrypt_aes(private_key, str(req))))['title']
+    encrypted_data = req.txt
+    print(encrypted_data)
+    node_list = json.loads(str(decrypt_aes(private_key, str(encrypted_data))))['title']
     Vless = ''
     for i in node_list :
         host = i['ip']
