@@ -24,20 +24,44 @@ from Telegram_bot import send_message
 urllib3.disable_warnings()
 
 
-def decrypt_aes(data: str) -> str:
-    key = private_key
-    iv = authorization
-    data_bytes = base64.b64decode(data.decode('utf-8'))
-    cipher = AES.new(key, AES.MODE_CBC, iv.encode('utf-8'))
-    decrypted_bytes = cipher.decrypt_and_verify(data_bytes[:-16], data_bytes[-16:])
-    return decrypted_bytes.decode('utf-8')
+class AESCipher:
+    def __init__(self, key):
+        md5_hash = MD5.new()
+        md5_hash.update(key.encode('utf-8'))
+        self.key = md5_hash.digest()
+
+    def encrypt(self, data):
+        cipher = AES.new(self.key, AES.MODE_GCM, nonce=authorization.encode('utf-8'))
+        encrypted_bytes, tag = cipher.encrypt_and_digest(data.encode('utf-8'))
+        return base64.b64encode(encrypted_bytes + tag).decode('utf-8')
+
+    def decrypt(self, data):
+        try:
+            data_bytes = base64.b64decode(data.encode('utf-8'))
+            cipher = AES.new(self.key, AES.MODE_GCM, nonce=authorization.encode('utf-8'))
+            decrypted_bytes = cipher.decrypt_and_verify(data_bytes[:-16], data_bytes[-16:])
+            return decrypted_bytes.decode('utf-8')
+        except Exception as e:
+            print("Error during decryption:", e)
+            return None
+
+
+def encode(s):
+    cipher = AESCipher(private_key)
+    return cipher.encrypt(s)
+
+
+def decode(s):
+    cipher = AESCipher(private_key)
+    return cipher.decrypt(s)
+
 
 
 def get_node():
     url = api
     headers = {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 10; MI 9 MIUI/20.9.4)"}
     req = requests.get(url, headers=headers)
-    node_list = json.loads(decrypt_aes(req.content))['title']
+    node_list = json.loads(decode(req.text))['title']
     Vless = ''
     for i in node_list :
         host = i['ip']
