@@ -45,8 +45,6 @@ def get_node():
             break
     with open("./links/vless", "w") as f:
         f.write(base64.b64encode(Vless.encode()).decode())
-    except Exception as e:
-        print(e)
     return None
 
 if __name__ == '__main__':
