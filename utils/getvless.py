@@ -44,8 +44,10 @@ def get_node():
         if i == node_info[11]:
             break
     with open("./links/vless", "w") as f:
-    f.write(base64.b64encode(Vless.encode()).decode())
-
+        f.write(base64.b64encode(Vless.encode()).decode())
+    except Exception as e:
+        print(e)
+    return None
 
 if __name__ == '__main__':
     api = os.environ['vless_api']
