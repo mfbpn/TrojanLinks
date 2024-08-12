@@ -119,6 +119,7 @@ if __name__ == '__main__':
             protocol = i['protocol']
             protocol_param = i['protocol_param']
             obfs = i['obfs']
+            obfsparam = 'tg@mfbpn'
             method = i['method']
             nodeinfo = host + ':' + str(
                 remotePort) + ':' + protocol + ':' + method + ':' + obfs + ':' + base64.urlsafe_b64encode(
