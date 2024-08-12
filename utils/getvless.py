@@ -35,7 +35,7 @@ def decrypt_aes(data):
 def get_node():
     url = api
     headers = {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 10; MI 9 MIUI/20.9.4)"}
-    req = requests.get(url, headers=headers, verify=False)
+    req = requests.get(url, headers=headers, verify=False).content
     encrypted_data = str(req)
     print(req)
     node_list = json.loads(str(decrypt_aes(req)))['title']
