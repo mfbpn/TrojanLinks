@@ -30,7 +30,8 @@ def decrypt_aes(data):
     data_len = len(data)
     print(data_len)
     #plaintext = pad(data, 16)
-    decrypted_data = unpad(cipher.decrypt(base64.b64decode(data)), AES.block_size)
+    #decrypted_data = unpad(cipher.decrypt(base64.b64decode(data)), AES.block_size)
+    decrypted_data = unpad(cipher.decrypt(data), AES.block_size)
     return decrypted_data.decode()
 
 
