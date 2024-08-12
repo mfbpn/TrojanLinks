@@ -16,7 +16,7 @@ from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.Cipher import AES
 from Crypto.Hash import MD5
-from Crypto.Util.Padding import unpad
+from Crypto.Util.Padding import pad, unpad
 import base64
 from base64 import b64decode
 from Telegram_bot import send_message
@@ -27,6 +27,7 @@ urllib3.disable_warnings()
 def decrypt_aes(key, data):
     iv = b'\x08\x08\x0c\x0a\x00\x0f\x00\x0e\x0a\x01\x0e\x0c\x0f\x09\x07\x05'
     cipher = AES.new(key.encode(), AES.MODE_CBC, iv)
+    data = pad(data, AES.block_size)
     decrypted_data = unpad(cipher.decrypt(base64.b64decode(data)), AES.block_size)
     return decrypted_data.decode()
 
