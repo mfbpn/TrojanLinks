@@ -31,7 +31,6 @@ def decrypt_aes(data):
     cipher = AES.new(private_key.encode(), AES.MODE_CBC, authorization.encode())
     data_len = len(data)
     print(data_len)
-    print(data)
     #plaintext = pad(data, 16)
     #decrypted_data = unpad(cipher.decrypt(base64.b64decode(data)), AES.block_size)
     decrypted_data = unpad(cipher.decrypt(a2b_hex(data)), AES.block_size)
