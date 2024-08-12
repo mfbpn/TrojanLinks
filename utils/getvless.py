@@ -28,7 +28,7 @@ def decrypt_aes(data):
     iv = b'\x08\x08\x0c\x0a\x00\x0f\x00\x0e\x0a\x01\x0e\x0c\x0f\x09\x07\x05'
     cipher = AES.new(private_key.encode(), AES.MODE_CBC, iv)
     data = pad(data, AES.block_size)
-    decrypted_data = unpad(cipher.decrypt(base64.b64decode(data)), AES.block_size)
+    decrypted_data = unpad(cipher.decrypt(data), AES.block_size)
     return decrypted_data.decode()
 
 
