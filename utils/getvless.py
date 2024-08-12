@@ -26,9 +26,9 @@ urllib3.disable_warnings()
 def decrypt_aes(data: str) -> str:
     key = private_key
     iv = authorization
-    cipher = AES.new(key, AES.MODE_CBC, iv)
-    decrypted_data = unpad(cipher.decrypt(base64.b64decode(data)), AES.block_size)
-    return decrypted_data.decode()
+    cipher = AES.new(key.encode('utf-8'), AES.MODE_CBC, iv.encode('utf-8'))
+    decrypted_text = cipher.decrypt(b64decode(data))
+    return decrypted_text.decode('utf-8')
 
 
 def get_node():
