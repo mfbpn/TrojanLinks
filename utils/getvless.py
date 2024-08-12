@@ -35,7 +35,7 @@ def decrypt_aes(data):
     #decrypted_data = unpad(cipher.decrypt(base64.b64decode(data)), AES.block_size)
     decrypted_data = unpad(cipher.decrypt(a2b_hex(data)), AES.block_size)
     #strdecrypted_datastr = str(decrypted_data, encoding = "utf-8")
-    #print(decrypted_data)
+    print(decrypted_data)
     #print(decrypted_data.encode('utf8').decode('unicode_escape'))
     return decrypted_data.encode('utf8')
 
