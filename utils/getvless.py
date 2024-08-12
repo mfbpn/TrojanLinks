@@ -27,8 +27,8 @@ urllib3.disable_warnings()
 def decrypt_aes(data: str) -> str:
     key = private_key
     iv = authorization
-    data_bytes = base64.b64decode(data.encode('utf-8'))
-    cipher = AES.new(key.encode('utf-8'), AES.MODE_CBC, iv.encode('utf-8'))
+    data_bytes = base64.b64decode(data.decode('utf-8'))
+    cipher = AES.new(key, AES.MODE_CBC, iv.encode('utf-8'))
     decrypted_bytes = cipher.decrypt_and_verify(data_bytes[:-16], data_bytes[-16:])
     return decrypted_bytes.decode('utf-8')
 
