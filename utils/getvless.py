@@ -17,6 +17,7 @@ from Crypto.Cipher import PKCS1_OAEP
 from Crypto.Cipher import AES
 from Crypto.Hash import MD5
 from Crypto.Util.Padding import pad, unpad
+from binascii import a2b_hex, b2a_hex
 import base64
 from base64 import b64decode
 from Telegram_bot import send_message
@@ -31,7 +32,7 @@ def decrypt_aes(data):
     print(data_len)
     #plaintext = pad(data, 16)
     #decrypted_data = unpad(cipher.decrypt(base64.b64decode(data)), AES.block_size)
-    decrypted_data = unpad(cipher.decrypt(data), AES.block_size)
+    decrypted_data = unpad(cipher.decrypt(a2b_hex(data)), AES.block_size)
     return decrypted_data.decode()
 
 
