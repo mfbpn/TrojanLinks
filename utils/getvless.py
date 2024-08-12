@@ -29,9 +29,7 @@ def decrypt_aes(data):
     cipher = AES.new(private_key.encode(), AES.MODE_CBC, iv)
     data_len = len(data)
     print(data_len)
-    data = unpad(data, AES.block_size)
-    data_len = len(data)
-    print(data_len)
+    data = pad(data)
     decrypted_data = unpad(cipher.decrypt(base64.b64encode(data)), AES.block_size)
     return decrypted_data.decode()
 
