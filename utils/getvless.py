@@ -24,10 +24,11 @@ from Telegram_bot import send_message
 urllib3.disable_warnings()
 
 
-def d(ciphertext, key, iv):
-    cipher = AES.new(key.encode(), AES.MODE_CBC, iv.encode())
-    plaintext = unpad(cipher.decrypt(b64decode(ciphertext)), AES.block_size)
-    return plaintext.decode()
+def decrypt_aes(key, data):
+    iv = b'\x08\x08\x0c\x0a\x00\x0f\x00\x0e\x0a\x01\x0e\x0c\x0f\x09\x07\x05'
+    cipher = AES.new(key.encode(), AES.MODE_CBC, iv)
+    decrypted_data = unpad(cipher.decrypt(base64.b64decode(data)), AES.block_size)
+    return decrypted_data.decode()
 
 
 def get_node():
