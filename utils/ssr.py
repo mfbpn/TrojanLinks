@@ -123,7 +123,7 @@ if __name__ == '__main__':
             method = i['method']
             nodeinfo = host + ':' + str(
                 remotePort) + ':' + protocol + ':' + method + ':' + obfs + ':' + base64.urlsafe_b64encode(
-                password.encode()).decode() + '/?' + f'obfsparam=&protoparam={base64.urlsafe_b64encode(protocol_param.encode()).decode().strip("=")}&remarks={base64.urlsafe_b64encode(name.encode()).decode().rstrip("=")}&group='
+                password.encode()).decode() + '/?obfsparam=' + f'protoparam={base64.urlsafe_b64encode(protocol_param.encode()).decode().strip("=")}&remarks={base64.urlsafe_b64encode(name.encode()).decode().rstrip("=")}&group='
             ssr = 'ssr://' + base64.urlsafe_b64encode(nodeinfo.encode()).decode().rstrip("=")
             SSR += ssr + '\n'
             if i == node_list[19]:
