@@ -34,8 +34,8 @@ def decrypt_aes(data):
 def get_node():
     url = api
     headers = {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 10; MI 9 MIUI/20.9.4)"}
-    req = requests.get(url, headers=headers).json()
-    node_list = json.loads(decrypt_aes(req['data']))['title']
+    req = requests.get(url, headers=headers)
+    node_list = json.loads(decrypt_aes(req.content))['title']
     Vless = ''
     for i in node_list :
         host = i['ip']
