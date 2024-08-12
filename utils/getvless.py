@@ -35,13 +35,14 @@ def get_node():
     url = api
     headers = {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 10; MI 9 MIUI/20.9.4)"}
     req = requests.get(url, headers=headers)
-    node_info = json.loads(decrypt_aes(req.text))['goserverlist']
+    node_info = decrypt_aes(req.text)
+    node_list = json.loads(node_info)['goserverlist']
     Vless = ''
-    for i in node_info :
+    for i in node_list :
         host = i['ip']
         vless = 'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDU=' + '@' + host + ':' + '443' + '#' + '%F0%9F%87%AD%F0%9F%87%B0%20%F0%9D%99%8F%F0%9D%99%82%40%F0%9D%99%88%F0%9D%99%81%F0%9D%98%BD%F0%9D%99%8B%F0%9D%99%89%200'
         Vless += vless + '\n'
-        if i == node_info[11]:
+        if i == node_list[11]:
             break
     with open("./links/vless", "w") as f:
         f.write(base64.b64encode(Vless.encode()).decode())
