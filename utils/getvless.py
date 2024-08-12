@@ -27,9 +27,9 @@ urllib3.disable_warnings()
 def decrypt_aes(data):
     iv = b'\x08\x08\x0c\x0a\x00\x0f\x00\x0e\x0a\x01\x0e\x0c\x0f\x09\x07\x05'
     cipher = AES.new(private_key.encode(), AES.MODE_CBC, iv)
-    data = pad(data, AES.block_size)
+    #data = pad(data, AES.block_size)
     decrypted_data = unpad(cipher.decrypt(base64.b64decode(data)), AES.block_size)
-    return str(decrypted_data)
+    return decrypted_data.decode()
 
 
 def get_node():
@@ -38,7 +38,7 @@ def get_node():
     req = requests.get(url, headers=headers, verify=False)
     encrypted_data = str(req)
     print(encrypted_data)
-    node_list = json.loads(str(decrypt_aes(str(encrypted_data))))['title']
+    node_list = json.loads(str(decrypt_aes(encrypted_data)))['title']
     Vless = ''
     for i in node_list :
         host = i['ip']
