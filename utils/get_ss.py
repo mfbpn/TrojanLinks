@@ -92,7 +92,7 @@ if __name__ == '__main__':
 	'LANG': 'CN',
 	'server_type': 'WG'
 	}
-	node_list = requests.post(os.environ['ss_url'], data=data, headers=json.loads(os.environ['ss_headers']), verify=Ture)
+	node_list = requests.post(os.environ['ss_url'], data=data, headers=json.loads(os.environ['ss_headers']))
 	nodetest = node_list.text
 	#print(json.loads(str(node_list)))
 	print(nodetest)
