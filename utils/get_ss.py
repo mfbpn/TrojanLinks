@@ -88,11 +88,11 @@ urllib3.disable_warnings()
 #     return None
 
 if __name__ == '__main__':
-	data = {
-	'LANG': 'CN',
-	'server_type': 'WG'
-	}
-	node_list = requests.post(os.environ['ss_url'], data=data, headers=json.loads(os.environ['ss_headers'])).text
+	# data = {
+	# 'LANG': 'CN',
+	# 'server_type': 'WG'
+	# }
+	node_list = requests.post(os.environ['ss_url'], data==json.loads(os.environ['ss_key']), headers=json.loads(os.environ['ss_headers'])).text
 	nodetest = json.loads(str(node_list))
 	#print(json.loads(str(node_list)))
 	print(node_list)
