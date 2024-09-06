@@ -103,7 +103,7 @@ if __name__ == '__main__':
 	# 		Vless += vless + '\n'
 	# 	else:
 	# 		print(server)
-	# with open("./links/ss", "w") as f:
+	with open("./links/ss", "w") as f:
 		f.write(base64.b64encode(Vless.encode()).decode())
 	#return None
 	message = '#ss ' + '#订阅' + '\n' + datetime.now().strftime("%Y年%m月%d日%H:%M:%S") + '\n' + 'ss' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/ss'
