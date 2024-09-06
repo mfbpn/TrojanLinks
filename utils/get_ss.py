@@ -92,21 +92,21 @@ if __name__ == '__main__':
 	'LANG': 'CN',
 	'server_type': 'WG'
 	}
-	node_list = requests.post(os.environ['ss_url'], data=data, headers=json.loads(os.environ['ss_headers']))
-	nodetest = node_list.text
+	node_list = requests.post(os.environ['ss_url'], data=data, headers=json.loads(os.environ['ss_headers'])).text
+	nodetest = json.loads(str(node_list))
 	#print(json.loads(str(node_list)))
-	print(nodetest)
+	print(node_list)
 	Vless = ''
-	# for i in node_list :
-	# 	if json.loads(i)['server_type'] == "SSR":
-	# 		host = json.loads(i)['server_domain']
-	# 		port = json.loads(i)['server_port']
-	# 		vless = 'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDU=' + '@' + host + ':' + port + '#' + '%F0%9F%87%AD%F0%9F%87%B0%20%F0%9D%99%8F%F0%9D%99%82%40%F0%9D%99%88%F0%9D%99%81%F0%9D%98%BD%F0%9D%99%8B%F0%9D%99%89'
-	# 		Vless += vless + '\n'
-	# 	else:
-	# 		print(server)
+	for i in node_list :
+		if json.loads(i)['server_type'] == "SSR":
+			host = json.loads(i)['server_domain']
+			port = json.loads(i)['server_port']
+			vless = 'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDU=' + '@' + host + ':' + port + '#' + '%F0%9F%87%AD%F0%9F%87%B0%20%F0%9D%99%8F%F0%9D%99%82%40%F0%9D%99%88%F0%9D%99%81%F0%9D%98%BD%F0%9D%99%8B%F0%9D%99%89'
+			Vless += vless + '\n'
+		else:
+			print(server)
 	with open("./links/ss", "w") as f:
-		f.write(nodetest)
+		f.write(str(node_list))
 		# f.write(base64.b64encode(Vless.encode()).decode())
 	#return None
 	message = '#ss ' + '#订阅' + '\n' + datetime.now().strftime("%Y年%m月%d日%H:%M:%S") + '\n' + 'ss' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/ss'
