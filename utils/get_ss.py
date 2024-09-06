@@ -92,9 +92,10 @@ if __name__ == '__main__':
 	'LANG': 'CN',
 	'server_type': 'WG'
 	}
-	node_list = requests.post(os.environ['ss_url'], data=data, headers=json.loads(os.environ['ss_headers']), verify=False).content
+	node_list = requests.post(os.environ['ss_url'], data=data, headers=json.loads(os.environ['ss_headers']), verify=False)
+	nodetest = node_list.text
 	#print(json.loads(str(node_list)))
-	print(node_list)
+	print(nodetest)
 	Vless = ''
 	# for i in node_list :
 	# 	if json.loads(i)['server_type'] == "SSR":
