@@ -92,14 +92,14 @@ if __name__ == '__main__':
     # userinfo = json.loads(os.environ['ss_userinfo'])
     # userinfo['uuid'] = str(uuid.uuid4()).replace('-', '')
     # encoded_str = encode_url(encode(json.dumps(userinfo, separators=(',', ':'), ensure_ascii=False)))
-    data = {
+	data = {
 	'LANG': 'CN',
 	'server_type': 'WG'
-    }
-    node_list = requests.post(os.environ['ss_url'], data=data, headers=json.loads(os.environ['ss_headers']), verify=False).json()
-    print(node_list)
-    Vless = ''
-    for i in node_list :
+	}
+	node_list = requests.post(os.environ['ss_url'], data=data, headers=json.loads(os.environ['ss_headers']), verify=False).json()
+	print(node_list)
+	Vless = ''
+	for i in node_list :
 	# if i['server_type'] == "SSR":
 		host = i['server_domain']
 		port = i['server_port']
@@ -107,8 +107,8 @@ if __name__ == '__main__':
 		Vless += vless + '\n'
 		if i == node_list[20]:
 		    break
-    with open("./links/ss", "w") as f:
-    	f.write(base64.b64encode(Vless.encode()).decode())
-    #return None
-    message = '#ss ' + '#订阅' + '\n' + datetime.now().strftime("%Y年%m月%d日%H:%M:%S") + '\n' + 'ss' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/ss'
-    send_message(os.environ['chat_id'], message, os.environ['bot_token'])
+	with open("./links/ss", "w") as f:
+		f.write(base64.b64encode(Vless.encode()).decode())
+	#return None
+	message = '#ss ' + '#订阅' + '\n' + datetime.now().strftime("%Y年%m月%d日%H:%M:%S") + '\n' + 'ss' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/ss'
+	send_message(os.environ['chat_id'], message, os.environ['bot_token'])
