@@ -92,7 +92,7 @@ if __name__ == '__main__':
 	'LANG': 'CN',
 	'server_type': 'WG'
 	}
-	node_list = requests.post(os.environ['ss_url'], data=data, headers=json.loads(os.environ['ss_headers']), verify=False)
+	node_list = requests.post(os.environ['ss_url'], data=data, headers=json.loads(os.environ['ss_headers']), verify=Ture)
 	nodetest = node_list.text
 	#print(json.loads(str(node_list)))
 	print(nodetest)
@@ -106,7 +106,7 @@ if __name__ == '__main__':
 	# 	else:
 	# 		print(server)
 	with open("./links/ss", "w") as f:
-		f.write(node_list)
+		f.write(nodetest)
 		# f.write(base64.b64encode(Vless.encode()).decode())
 	#return None
 	message = '#ss ' + '#订阅' + '\n' + datetime.now().strftime("%Y年%m月%d日%H:%M:%S") + '\n' + 'ss' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/ss'
