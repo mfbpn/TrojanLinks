@@ -92,10 +92,10 @@ if __name__ == '__main__':
     # userinfo = json.loads(os.environ['ss_userinfo'])
     # userinfo['uuid'] = str(uuid.uuid4()).replace('-', '')
     # encoded_str = encode_url(encode(json.dumps(userinfo, separators=(',', ':'), ensure_ascii=False)))
-	data = {
-	    'LANG': CN,
-	    'server_type': 'WG'
-	}
+    data = {
+	'LANG': CN,
+	'server_type': 'WG'
+    }
     node_list = requests.post(os.environ['ss_url'], data=data, headers=json.loads(os.environ['ss_headers']), verify=False).json
     print(node_list)
     Vless = ''
