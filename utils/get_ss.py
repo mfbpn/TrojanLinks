@@ -75,7 +75,7 @@ urllib3.disable_warnings()
 #     req = requests.get(url, headers=headers, verify=False).content
 #     #print(req)
 #     node_list = json.loads(str(decrypt_aes(req)))['data']
-    Vless = ''
+    # Vless = ''
 #     for i in node_list :
 #         host = i['ip']
 #         vless = 'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDU=' + '@' + host + ':' + '443' + '#' + '%F0%9F%87%AD%F0%9F%87%B0%20%F0%9D%99%8F%F0%9D%99%82%40%F0%9D%99%88%F0%9D%99%81%F0%9D%98%BD%F0%9D%99%8B%F0%9D%99%89'
@@ -94,6 +94,7 @@ if __name__ == '__main__':
     # encoded_str = encode_url(encode(json.dumps(userinfo, separators=(',', ':'), ensure_ascii=False)))
     node_list = requests.post(os.environ['ss_url'], headers=json.loads(os.environ['ss_headers']), verify=False).json
     print(node_list)
+    Vless = ''
     # for i in node_list :
     # 	if i['server_type'] == "SSR":
 	   #      host = i['server_domain']
