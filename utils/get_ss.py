@@ -99,14 +99,18 @@ if __name__ == '__main__':
 	node_list = requests.post(os.environ['ss_url'], data=data, headers=json.loads(os.environ['ss_headers']), verify=False).json()
 	print(node_list)
 	Vless = ''
-	for i in node_list :
-	# if i['server_type'] == "SSR":
-		host = i['server_domain']
-		port = i['server_port']
-		vless = 'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDU=' + '@' + host + ':' + port + '#' + '%F0%9F%87%AD%F0%9F%87%B0%20%F0%9D%99%8F%F0%9D%99%82%40%F0%9D%99%88%F0%9D%99%81%F0%9D%98%BD%F0%9D%99%8B%F0%9D%99%89'
-		Vless += vless + '\n'
-		if i == node_list[20]:
-		    break
+	for server_list  in node_list :
+		if server_list['servers']:
+			for servers in server_list['servers']:
+				if servers['server_type'] == "SSR":
+					server = servers['server_domain']
+                    ip = servers['server_ip']
+                    vless = 'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDU=' + '@' + host + ':' + port + '#' + '%F0%9F%87%AD%F0%9F%87%B0%20%F0%9D%99%8F%F0%9D%99%82%40%F0%9D%99%88%F0%9D%99%81%F0%9D%98%BD%F0%9D%99%8B%F0%9D%99%89'
+					Vless += vless + '\n'
+				else:
+                        print(server)
+        else:
+            print(server_list)
 	with open("./links/ss", "w") as f:
 		f.write(base64.b64encode(Vless.encode()).decode())
 	#return None
