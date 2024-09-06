@@ -92,7 +92,7 @@ if __name__ == '__main__':
 	'LANG': 'CN',
 	'server_type': 'WG'
 	}
-	node_list = requests.post(os.environ['ss_url'], data=data, headers=json.loads(os.environ['ss_headers']), verify=False).text
+	node_list = requests.post(os.environ['ss_url'], data=data, headers=json.loads(os.environ['ss_headers']), verify=False).content
 	#print(json.loads(str(node_list)))
 	print(node_list)
 	Vless = ''
