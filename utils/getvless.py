@@ -45,7 +45,7 @@ def get_node():
     Vless = ''
     for i in node_list :
         host = i['ip']
-        vless = 'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDU=' + '@' + host + ':' + '443' + '#' + '#TG%40MFBPN'
+        vless = 'ss://YWVzLTI1Ni1jZmI6YW1hem9uc2tyMDU=' + '@' + host + ':' + '443' + '#' + 'TG%E9%A2%91%E9%81%93%40MFBPN'
         Vless += vless + '\n'
         if i == node_list[11]:
             break
