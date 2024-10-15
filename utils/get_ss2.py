@@ -9,13 +9,28 @@ import json
 import os
 import uuid
 from datetime import datetime
-import requests
 import urllib3
 from Crypto.Hash import MD5
 from Crypto.Cipher import AES
-import base64
-import urllib.parse
+#import urllib.parse
 from Telegram_bot import send_message
+
+
+import requests
+import random
+import base64
+import re
+import string
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad
+import binascii
+import re
+import time
+from bs4 import BeautifulSoup
+from urllib import parse
+from urllib.parse import unquote
+
+
 
 urllib3.disable_warnings()
 
