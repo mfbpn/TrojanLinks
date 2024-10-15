@@ -1,5 +1,7 @@
 import requests
 import random
+import base64
+import re
 import string
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
@@ -121,50 +123,56 @@ params = {
 
 # 设置请求头
 headers4 = {
-    'User-Agent': 'ClashforWindows/0.19.23',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
     'Connection': 'Keep-Alive',
     'Accept-Encoding': 'gzip'
 }
 # 发送 GET 请求
-response = requests.get(porxy_url, headers=headers4)
+response = requests.get(porxy_url, headers=headers4).text
+# print(base64.b64decode(response))
+#print(re.sub('#(.*)\\r\\n', 'tg@mfbpn\r\n', base64.b64decode(response)))
+abcd = base64.b64decode(response.encode('utf-8')).decode('utf-8').replace("\r\n", " tg@mfbpn\r\n")
+#print(base64.b64decode(response.encode('utf-8')).decode('utf-8').replace("\r\n", " tg@mfbpn\r\n"))
 
+abcd2 =abcd.replace("hk.bazhuayujiasu.cc", "tg_mfbpn.52cloud.us.kg")
+abcd3 = base64.b64encode(abcd2.encode('utf-8'))
+print(abcd3)
+# # 解析返回头参数
+# subscription_userinfo = response.headers.get('subscription-userinfo')
+# if subscription_userinfo:
+#     pass
+# else:
+#     print("没有找到 subscription-userinfo 头部信息。")
+# subscription_info = subscription_userinfo
 
-# 解析返回头参数
-subscription_userinfo = response.headers.get('subscription-userinfo')
-if subscription_userinfo:
-    pass
-else:
-    print("没有找到 subscription-userinfo 头部信息。")
-subscription_info = subscription_userinfo
+# # 将字符串按分号分隔，然后处理每个键值对
+# info_dict = {}
+# for item in subscription_info.split(';'):
+#     key, value = item.strip().split('=')
+#     info_dict[key] = value
 
-# 将字符串按分号分隔，然后处理每个键值对
-info_dict = {}
-for item in subscription_info.split(';'):
-    key, value = item.strip().split('=')
-    info_dict[key] = value
+# # 转换字典中的字符串值为整数
+# info_dict['upload'] = int(info_dict['upload'])
+# info_dict['download'] = int(info_dict['download'])
+# info_dict['total'] = int(info_dict['total'])
+# info_dict['expire'] = int(info_dict['expire'])
 
-# 转换字典中的字符串值为整数
-info_dict['upload'] = int(info_dict['upload'])
-info_dict['download'] = int(info_dict['download'])
-info_dict['total'] = int(info_dict['total'])
-info_dict['expire'] = int(info_dict['expire'])
+# # 将 upload 和 download 从字节转换为吉字节
+# info_dict['upload_GB'] = info_dict['upload'] / (1024 ** 3)
+# info_dict['download_GB'] = info_dict['download'] / (1024 ** 3)
+# info_dict['total_GB'] = info_dict['total'] / (1024 ** 3)
 
-# 将 upload 和 download 从字节转换为吉字节
-info_dict['upload_GB'] = info_dict['upload'] / (1024 ** 3)
-info_dict['download_GB'] = info_dict['download'] / (1024 ** 3)
-info_dict['total_GB'] = info_dict['total'] / (1024 ** 3)
+# # 输出转换结果
+# print("\n影猫(八爪鱼)")
+# print(f"上传流量: {info_dict['upload_GB']:.2f} GB")
+# print(f"下载流量: {info_dict['download_GB']:.2f} GB")
+# print(f"总流量: {info_dict['total_GB']:.2f} GB")
 
-# 输出转换结果
-print("\n影猫(八爪鱼)")
-print(f"上传流量: {info_dict['upload_GB']:.2f} GB")
-print(f"下载流量: {info_dict['download_GB']:.2f} GB")
-print(f"总流量: {info_dict['total_GB']:.2f} GB")
+# # 计算剩余流量（假设总流量为 total，已用流量为 upload + download）
+# remaining_traffic_GB = (info_dict['total'] - (info_dict['upload'] + info_dict['download'])) / (1024 ** 3)
+# print(f"剩余流量: {remaining_traffic_GB:.2f} GB")
 
-# 计算剩余流量（假设总流量为 total，已用流量为 upload + download）
-remaining_traffic_GB = (info_dict['total'] - (info_dict['upload'] + info_dict['download'])) / (1024 ** 3)
-print(f"剩余流量: {remaining_traffic_GB:.2f} GB")
-
-# 计算过期时间
-import datetime
-expire_time = datetime.datetime.fromtimestamp(info_dict['expire'])
-print("过期时间:", expire_time.strftime('%Y-%m-%d %H:%M:%S'))
+# # 计算过期时间
+# import datetime
+# expire_time = datetime.datetime.fromtimestamp(info_dict['expire'])
+# print("过期时间:", expire_time.strftime('%Y-%m-%d %H:%M:%S'))
