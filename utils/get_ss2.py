@@ -83,7 +83,7 @@ if __name__ == '__main__':
     #     'Accept-Encoding': 'gzip',
     #     'Content-Type': 'application/x-www-form-urlencoded'
     # }
-    headers = bzy_headers
+    headers = os.environ['bzy_headers']
     # URL 和参数
     # url = "https://app.bazhuayujiasu.cc:18001/netbarcloud/vpn/octopusRegister.do"
     url = os.environ['bzy_url']
