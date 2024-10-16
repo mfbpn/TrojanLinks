@@ -167,7 +167,7 @@ if __name__ == '__main__':
     print(abcd3)
 
     with open("./links/ss", "w") as f:
-            f.write(abcd3)
+            f.write(abcd3.encode('utf-8'))
     message = '#vmess ' + '#订阅' + '\n' + datetime.now().strftime(
             "%Y年%m月%d日%H:%M:%S") + '\n' + 'vmess订阅每35分钟自动更新：' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/ss'
     send_message(os.environ['chat_id'], message, os.environ['bot_token'])
