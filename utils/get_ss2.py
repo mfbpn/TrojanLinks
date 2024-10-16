@@ -77,12 +77,12 @@ if __name__ == '__main__':
     session = requests.Session()
 
     # 自定义请求头
-    # headers = {
-    #     'User-Agent': 'Octopus_Android',
-    #     'Connection': 'Keep-Alive',
-    #     'Accept-Encoding': 'gzip',
-    #     'Content-Type': 'application/x-www-form-urlencoded'
-    # }
+    headers = {
+        'User-Agent': 'Octopus_Android',
+        'Connection': 'Keep-Alive',
+        'Accept-Encoding': 'gzip',
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
     headers = os.environ['bzy_headers']
     # URL 和参数
     # url = "https://app.bazhuayujiasu.cc:18001/netbarcloud/vpn/octopusRegister.do"
@@ -111,12 +111,11 @@ if __name__ == '__main__':
     }
 
     # 设置请求头
-    # headers2 = {
-    #     'User-Agent': 'Octopus_Android',
-    #     'Connection': 'Keep-Alive',
-    #     'Accept-Encoding': 'gzip'
-    # }
-    headers2 = os.environ['bzy_headers2']
+    headers2 = {
+        'User-Agent': 'Octopus_Android',
+        'Connection': 'Keep-Alive',
+        'Accept-Encoding': 'gzip'
+    }
 
     # 发送 POST 请求
     response3 = requests.post(url2, headers=headers2, params=params2)
