@@ -38,53 +38,28 @@ urllib3.disable_warnings()
 
 
 if __name__ == '__main__':
-    # ss_key = os.environ['bzy_key']
-    # ss_iv = os.environ['bzy_iv']
-    # 随机生成8位字符串
     def uuid_a():
         characters = string.ascii_lowercase + string.digits
         random_string = ''.join(random.choice(characters) for i in range(8))
         return (random_string)
-
     uuid = uuid_a()
-
-    # AES加密
     def aes_encrypt(key: bytes, iv: bytes, plaintext: str) -> str:
-        # 创建 AES 加密器
         cipher = AES.new(key, AES.MODE_CBC, iv)
-        
-        # 对明文进行填充
         padded_plaintext = pad(plaintext.encode(), AES.block_size)
-        
-        # 加密数据
         ciphertext = cipher.encrypt(padded_plaintext)
-        
-        # 返回十六进制编码的密文
         return binascii.hexlify(ciphertext).decode().upper() # 强制大写字母
 
-    # # 转换密钥和 IV
-    # key_text = "rwb6c4e7fz$6el%0"
-    # iv_text = "z1b6c3t4e5f6k7w8"
-    # 转换密钥和 IV
     key_text = os.environ['bzy_key']
     iv_text = os.environ['bzy_iv']
-
-    # 转换为字节
     key_bytes = key_text.encode('utf-8')
     iv_bytes = iv_text.encode('utf-8')
-
-    # 创建会话以确保连接保持打开状态
     session = requests.Session()
-
-    # 自定义请求头
     headers = {
         'User-Agent': 'Octopus_Android',
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip',
         'Content-Type': 'application/x-www-form-urlencoded'
     }
-    # URL 和参数
-    # url = "https://app.bazhuayujiasu.cc:18001/netbarcloud/vpn/octopusRegister.do"
     url = os.environ['bzy_url']
     params = {
         'phoneNumber': uuid,
@@ -95,43 +70,27 @@ if __name__ == '__main__':
         'from': '5'
     }
 
-    # 发送 POST 请求
     token = session.post(url, headers=headers, params=params).json().get("userid")
-
-
-    # 定义 URL 和参数
     # url2 = "https://app.bazhuayujiasu.cc:18001/netbarcloud/vpn/phLogin.do"
     url2 = os.environ['bzy_url2']
-    # 设置请求参数
     params2 = {
         'phoneNumber': aes_encrypt(key_bytes, iv_bytes, uuid),
         'password': '255A42F2A6863798DBB392033F9D2FD7',
         'osType': 'android'
     }
-
-    # 设置请求头
     headers2 = {
         'User-Agent': 'Octopus_Android',
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip'
     }
-
-    # 发送 POST 请求
     response3 = requests.post(url2, headers=headers2, params=params2)
     phToken  = response3.json().get("data").get("phToken")
     token = response3.json().get("data").get("vpnToken")
-
-    # 定义URL和参数
-    # url3 = "https://app.bazhuayujiasu.cc:18001/netbarcloud/vpn/airportNode.do"
     url3 = os.environ['bzy_url3']
-
-    # 设置请求参数
     params3 = {
         'phToken': phToken,
         'phoneNumber': uuid
     }
-
-    # 设置请求头
     headers3 = {
         'User-Agent': 'Octopus_Android',
         'token': token,
@@ -139,20 +98,13 @@ if __name__ == '__main__':
         'Accept-Encoding': 'gzip'
     }
 
-    # 发送 POST 请求
     porxy_url = requests.post(url3, headers=headers3, params=params3).json().get("data").replace("\\", "")
-
-    # 输出响应内容
-    print(porxy_url)
-
-
-
+    #print(porxy_url)
     # 定义 URL 和参数
     url = "https://www.otcopusapp.cc/lx3af288h5i8pz380/api/v1/client/subscribe"
     params = {
         'token': '1d045ac3eba05ddc55477f1634625683'
     }
-
     # 设置请求头
     headers4 = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
@@ -175,22 +127,3 @@ if __name__ == '__main__':
     message = '#vmess ' + '#订阅' + '\n' + datetime.now().strftime(
             "%Y年%m月%d日%H:%M:%S") + '\n' + 'vmess订阅每35分钟自动更新：' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/ss'
     send_message(os.environ['chat_id'], message, os.environ['bot_token'])
-
-    # ss_key = os.environ['ss_key']
-    # ss_iv = os.environ['ss_iv']
-    # userinfo = json.loads(os.environ['ss_userinfo'])
-    # userinfo['uuid'] = str(uuid.uuid4()).replace('-', '')
-    # encoded_str = encode_url(encode(json.dumps(userinfo, separators=(',', ':'), ensure_ascii=False)))
-    # text = requests.post(os.environ['ss_url'], data=f'value={encoded_str}', headers=json.loads(os.environ['ss_headers']), verify=False).text
-    # headers = {
-    #     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari'
-    # }
-    # ss = ''
-    # for line in base64.b64decode(requests.get(json.loads(decode(text))['data']['data']['token'][1], headers=headers, verify=False).text).decode('utf-8').split('\n')[3:-1]:
-    #     domain = line.strip().split('@')[1].split(':')[0]
-    #     ss += line.replace(domain, get_address(domain)).strip() + '|Github%E6%90%9C%E7%B4%A2TrojanLinks\n'
-    # with open("./links/ss", "w") as f:
-    #     f.write(base64.b64encode(ss.encode()).decode())
-    # message = '#ss ' + '#订阅' + '\n' + datetime.now().strftime(
-    #     "%Y年%m月%d日%H:%M:%S") + '\n' + 'ss订阅每35分钟自动更新：' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/ss'
-    # send_message(os.environ['chat_id'], message, os.environ['bot_token'])
