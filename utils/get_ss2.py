@@ -38,8 +38,8 @@ urllib3.disable_warnings()
 
 
 if __name__ == '__main__':
-    # ss_key = os.environ['ss_key']
-    # ss_iv = os.environ['ss_iv']
+    # ss_key = os.environ['bzy_key']
+    # ss_iv = os.environ['bzy_iv']
     # 随机生成8位字符串
     def uuid_a():
         characters = string.ascii_lowercase + string.digits
@@ -62,9 +62,12 @@ if __name__ == '__main__':
         # 返回十六进制编码的密文
         return binascii.hexlify(ciphertext).decode().upper() # 强制大写字母
 
+    # # 转换密钥和 IV
+    # key_text = "rwb6c4e7fz$6el%0"
+    # iv_text = "z1b6c3t4e5f6k7w8"
     # 转换密钥和 IV
-    key_text = "rwb6c4e7fz$6el%0"
-    iv_text = "z1b6c3t4e5f6k7w8"
+    key_text = os.environ['bzy_key']
+    iv_text = os.environ['bzy_iv']
 
     # 转换为字节
     key_bytes = key_text.encode('utf-8')
@@ -74,15 +77,16 @@ if __name__ == '__main__':
     session = requests.Session()
 
     # 自定义请求头
-    headers = {
-        'User-Agent': 'Octopus_Android',
-        'Connection': 'Keep-Alive',
-        'Accept-Encoding': 'gzip',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
-
+    # headers = {
+    #     'User-Agent': 'Octopus_Android',
+    #     'Connection': 'Keep-Alive',
+    #     'Accept-Encoding': 'gzip',
+    #     'Content-Type': 'application/x-www-form-urlencoded'
+    # }
+    headers = bzy_headers
     # URL 和参数
-    url = "https://app.bazhuayujiasu.cc:18001/netbarcloud/vpn/octopusRegister.do"
+    # url = "https://app.bazhuayujiasu.cc:18001/netbarcloud/vpn/octopusRegister.do"
+    url = os.environ['bzy_url']
     params = {
         'phoneNumber': uuid,
         'password': '123456',
@@ -97,8 +101,8 @@ if __name__ == '__main__':
 
 
     # 定义 URL 和参数
-    url2 = "https://app.bazhuayujiasu.cc:18001/netbarcloud/vpn/phLogin.do"
-
+    # url2 = "https://app.bazhuayujiasu.cc:18001/netbarcloud/vpn/phLogin.do"
+    url2 = os.environ['bzy_url2']
     # 设置请求参数
     params2 = {
         'phoneNumber': aes_encrypt(key_bytes, iv_bytes, uuid),
@@ -107,11 +111,12 @@ if __name__ == '__main__':
     }
 
     # 设置请求头
-    headers2 = {
-        'User-Agent': 'Octopus_Android',
-        'Connection': 'Keep-Alive',
-        'Accept-Encoding': 'gzip'
-    }
+    # headers2 = {
+    #     'User-Agent': 'Octopus_Android',
+    #     'Connection': 'Keep-Alive',
+    #     'Accept-Encoding': 'gzip'
+    # }
+    headers2 = os.environ['bzy_headers2']
 
     # 发送 POST 请求
     response3 = requests.post(url2, headers=headers2, params=params2)
@@ -119,7 +124,8 @@ if __name__ == '__main__':
     token = response3.json().get("data").get("vpnToken")
 
     # 定义URL和参数
-    url3 = "https://app.bazhuayujiasu.cc:18001/netbarcloud/vpn/airportNode.do"
+    # url3 = "https://app.bazhuayujiasu.cc:18001/netbarcloud/vpn/airportNode.do"
+    url3 = os.environ['bzy_url3']
 
     # 设置请求参数
     params3 = {
