@@ -38,8 +38,8 @@ urllib3.disable_warnings()
 
 
 if __name__ == '__main__':
-    ss_key = os.environ['ss_key']
-    ss_iv = os.environ['ss_iv']
+    # ss_key = os.environ['ss_key']
+    # ss_iv = os.environ['ss_iv']
     # 随机生成8位字符串
     def uuid_a():
         characters = string.ascii_lowercase + string.digits
