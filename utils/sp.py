@@ -87,12 +87,15 @@ def n():
             r['ov_host'] = c(r['ov_host'], o, p)
         s = r.get('host') or r.get('ip')
         t = r.get('name', 'sb')
-        u = f"trojan://{b}@{s}:443?allowInsecure=1#{t}"
+        # u = f"trojan://{b}@{s}:443?allowInsecure=1#{t} "
+        u = "trojan://{b}@{s}:443?allowInsecure=1#{t} "
         u += u + '\n'
+        if r == q[r]:
+            break
         # Fuckme.append(u)
     print(u)
     with open("./links/sp", "w") as f:
-            f.write(str(u))
+            f.write(u)
         
     # with open('Fuckme.txt', 'w') as f:
     #     for link in Fuckme:
