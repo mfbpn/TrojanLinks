@@ -12,21 +12,6 @@ import requests
 import base64
 import pyaes
 
-# def show_author_info():
-#     print("""
-# ====================================================
-# |                                                  |
-# |          作者: iu                                 |
-# |          项目: 提取spvpn                          |
-# |          GitHub: https://github.com/Yu9191        |
-# |          Version: 1.0.0                          |
-# |          日期: 2024-10-16                        |
-# |                                                  |
-# ====================================================
-#     """)
-
-# a = "c3e7254f65b8c39e9d6391fd422140f3"
-# b = "3648425794742788096" 
 a = os.environ['sp_a']
 b = os.environ['sp_b']
 Fuckme = []
@@ -41,7 +26,6 @@ def c(d, e, f):
     return decrypted[:-padding_len].decode('utf-8')
 
 def i():
-    # j = "https://api.9527.click/v2/node/list"
     j = os.environ['sp_j']
     k = {
         'Host': 'api.9527.click',
@@ -52,8 +36,6 @@ def i():
         'Accept-Language': 'zh-Hans-CN;q=1',
         'Accept-Encoding': 'gzip, deflate, br'
     }
-    # k = os.environ['sp_k']
-    # l = os.environ['sp_l']
     l = {
         "key": "G8Jxb2YtcONGmQwN7b5odg==",
         "uid": b,
@@ -92,11 +74,14 @@ def n():
     print(u)
     # with open("./links/sp", "w") as f:
     #         f.write(u)
-        
-    with open('./links/sp', 'w') as f:
-        for link in Fuckme:
-            f.write(link + '\n')
+    for link in Fuckme:
+        link += link + '\n'
+
+    print(link)
+    #         f.write(link + '\n')
+    # with open('./links/sp', 'w') as f:
+    #     for link in Fuckme:
+    #         f.write(link + '\n')
 
 if __name__ == "__main__":
-    #show_author_info()  
     n()
