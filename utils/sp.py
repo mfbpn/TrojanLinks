@@ -77,8 +77,8 @@ def n():
         sp = link
         Sp += sp + '\n'
     print(Sp)
-    with open("./links/sp", "w") as f:
-            f.write(base64.b64encode(Sp))
+    with open("./links/sp", "wb") as f:
+            f.write(base64.b64encode(Sp.encode('utf-8')))
         
     #         f.write(link + '\n')
     # with open('./links/sp', 'w') as f:
