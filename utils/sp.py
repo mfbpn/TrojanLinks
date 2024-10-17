@@ -29,7 +29,7 @@ import pyaes
 # b = "3648425794742788096" 
 a = os.environ['sp_a']
 b = os.environ['sp_b']
-Fuckme = []
+# Fuckme = []
 def c(d, e, f):
     d = base64.b64decode(d)
     aes = pyaes.AESModeOfOperationCBC(e, iv=f)
@@ -88,10 +88,11 @@ def n():
         s = r.get('host') or r.get('ip')
         t = r.get('name', 'sb')
         u = f"trojan://{b}@{s}:443?allowInsecure=1#{t}"
-        Fuckme.append(u)
-    print(Fuckme)
+        u += u + '\n'
+        # Fuckme.append(u)
+    print(u)
     with open("./links/sp", "w") as f:
-            f.write(str(Fuckme))
+            f.write(str(u))
         
     # with open('Fuckme.txt', 'w') as f:
     #     for link in Fuckme:
