@@ -91,7 +91,7 @@ def n():
         Fuckme.append(u)
     print(Fuckme)
     with open("./links/sp", "w") as f:
-            f.write(Fuckme)
+            f.write(str(Fuckme))
         
     # with open('Fuckme.txt', 'w') as f:
     #     for link in Fuckme:
