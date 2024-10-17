@@ -52,7 +52,7 @@ def i():
     #     'Accept-Language': 'zh-Hans-CN;q=1',
     #     'Accept-Encoding': 'gzip, deflate, br'
     # }
-     k = os.environ['sp_k']
+    k = os.environ['sp_k']
     l = os.environ['sp_l']
     # l = {
     #     "key": "G8Jxb2YtcONGmQwN7b5odg==",
