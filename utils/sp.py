@@ -76,7 +76,7 @@ def n():
     #         f.write(u)
     for link in Fuckme:
         sp = link
-        sp += sp + '\n'
+        Sp += sp + '\n'
 
     print(sp)
     #         f.write(link + '\n')
