@@ -43,23 +43,23 @@ def c(d, e, f):
 def i():
     # j = "https://api.9527.click/v2/node/list"
     j = os.environ['sp_j']
-    # k = {
-    #     'Host': 'api.9527.click',
-    #     'Content-Type': 'application/json',
-    #     'Connection': 'keep-alive',
-    #     'Accept': '*/*',
-    #     'User-Agent': 'International/3.3.35 (iPhone; iOS 18.0.1; Scale/3.00)',
-    #     'Accept-Language': 'zh-Hans-CN;q=1',
-    #     'Accept-Encoding': 'gzip, deflate, br'
-    # }
-    k = os.environ['sp_k']
-    l = os.environ['sp_l']
-    # l = {
-    #     "key": "G8Jxb2YtcONGmQwN7b5odg==",
-    #     "uid": b,
-    #     "vercode": "1",
-    #     "uuid": "0273F74A-3F2E-44FB-8F87-717C9E3518E3"
-    # }
+    k = {
+        'Host': 'api.9527.click',
+        'Content-Type': 'application/json',
+        'Connection': 'keep-alive',
+        'Accept': '*/*',
+        'User-Agent': 'International/3.3.35 (iPhone; iOS 18.0.1; Scale/3.00)',
+        'Accept-Language': 'zh-Hans-CN;q=1',
+        'Accept-Encoding': 'gzip, deflate, br'
+    }
+    # k = os.environ['sp_k']
+    # l = os.environ['sp_l']
+    l = {
+        "key": "G8Jxb2YtcONGmQwN7b5odg==",
+        "uid": b,
+        "vercode": "1",
+        "uuid": "0273F74A-3F2E-44FB-8F87-717C9E3518E3"
+    }
 
     m = requests.post(j, headers=k, json=l)
     if m.status_code == 200:
