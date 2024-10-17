@@ -67,8 +67,7 @@ def n():
             r['host'] = c(r['host'], o, p)
         if 'ov_host' in r and r['ov_host']:
             r['ov_host'] = c(r['ov_host'], o, p)
-        #s = r.get('host') or r.get('ip')
-        s = r.get('ip')
+        s = r.get('host') or r.get('ip')
         t = r.get('name', 'sb')
         u = f"trojan://{b}@{s}:443?allowInsecure=1#{t} "
         Fuckme.append(u)
