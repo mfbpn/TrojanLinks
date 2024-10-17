@@ -73,13 +73,13 @@ def n():
         Fuckme.append(u)
     #print(u)
     Sp = ''
-    # with open("./links/sp", "w") as f:
-    #         f.write(u)
     for link in Fuckme:
         sp = link
         Sp += sp + '\n'
-
     print(Sp)
+    with open("./links/sp", "w") as f:
+            f.write(base64.b64encode(Sp.encode('utf-8')))
+        
     #         f.write(link + '\n')
     # with open('./links/sp', 'w') as f:
     #     for link in Fuckme:
