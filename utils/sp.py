@@ -90,9 +90,12 @@ def n():
         u = f"trojan://{b}@{s}:443?allowInsecure=1#{t}"
         Fuckme.append(u)
     print(Fuckme)
-    with open('Fuckme.txt', 'w') as f:
-        for link in Fuckme:
-            f.write(link + '\n')
+    with open("./links/sp", "w") as f:
+            f.write(Fuckme)
+        
+    # with open('Fuckme.txt', 'w') as f:
+    #     for link in Fuckme:
+    #         f.write(link + '\n')
 
 if __name__ == "__main__":
     #show_author_info()  
