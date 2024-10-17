@@ -71,7 +71,8 @@ def n():
         t = r.get('name', 'sb')
         u = f"trojan://{b}@{s}:443?allowInsecure=1#{t} "
         Fuckme.append(u)
-    print(u)
+    #print(u)
+    Sp = ''
     # with open("./links/sp", "w") as f:
     #         f.write(u)
     for link in Fuckme:
