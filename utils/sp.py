@@ -73,8 +73,8 @@ def n():
         Fuckme.append(u)
     Sp = ''
     for link in Fuckme:
-        sp = link.replace("#", "#tg@mfbpn ")
-        Sp += sp + '\n'
+        #sp = link
+        Sp += link + ' @mfbpn\n'
     # print(Sp)
     with open("./links/sp", "wb") as f:
             f.write(base64.b64encode(Sp.encode('utf-8')))
