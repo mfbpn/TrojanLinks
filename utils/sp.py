@@ -78,6 +78,10 @@ def n():
     # print(Sp)
     with open("./links/sp", "wb") as f:
             f.write(base64.b64encode(Sp.encode('utf-8')))
+    message = '#Sp ' + '#订阅' + '\n' + datetime.now().strftime(
+            "%Y年%m月%d日%H:%M:%S") + '\n' + 'Sp订阅每24小时自动更新：' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/sp'
+    send_message(os.environ['chat_id'], message, os.environ['bot_token'])
+    
 
 if __name__ == "__main__":
     n()
