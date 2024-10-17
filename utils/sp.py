@@ -78,7 +78,7 @@ def n():
         sp = link
         Sp += sp + '\n'
 
-    print(sp)
+    print(Sp)
     #         f.write(link + '\n')
     # with open('./links/sp', 'w') as f:
     #     for link in Fuckme:
