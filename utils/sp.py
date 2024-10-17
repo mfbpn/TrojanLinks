@@ -90,8 +90,8 @@ def n():
         # u = f"trojan://{b}@{s}:443?allowInsecure=1#{t} "
         u = "trojan://{b}@{s}:443?allowInsecure=1#{t} "
         u += u + '\n'
-        if r == q[r]:
-            break
+        # if r == q[r]:
+        #     break
         # Fuckme.append(u)
     print(u)
     with open("./links/sp", "w") as f:
