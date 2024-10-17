@@ -34,18 +34,11 @@ jobs:
         pip install -r ./utils/requirements2.txt
     - name: 执行任务
       env:
-        trojan_url: ${{secrets.trojan_url}}
-        bot_token: ${{secrets.bot_token}}
-        chat_id: ${{secrets.chat_id}}
-        bzy_url1: ${{secrets.bzy_url1}}
-        bzy_url2: ${{secrets.bzy_url2}}
-        bzy_url3: ${{secrets.bzy_url3}}
-        bzy_key: ${{secrets.bzy_key}}
-        bzy_iv: ${{secrets.bzy_iv}}
-        bzy_headers: ${{secrets.bzy_headers}}
-        bzy_headers2: ${{secrets.bzy_headers2}}
-        bzy_userinfo: ${{secrets.bzy_userinfo}}
-        bzy_url: ${{secrets.bzy_url}}
+        sp_a: ${{secrets.sp_a}}
+        sp_b: ${{secrets.sp_b}}
+        sp_j: ${{secrets.sp_j}}
+        sp_k: ${{secrets.sp_k}}
+        sp_l: ${{secrets.sp_l}}
       run: |
         python ./utils/sp.py
     - name: Commit
