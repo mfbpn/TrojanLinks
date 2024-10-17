@@ -71,19 +71,13 @@ def n():
         t = r.get('name', 'sb')
         u = f"trojan://{b}@{s}:443?allowInsecure=1#{t} "
         Fuckme.append(u)
-    #print(u)
     Sp = ''
     for link in Fuckme:
         sp = link
         Sp += sp + '\n'
-    print(Sp)
+    # print(Sp)
     with open("./links/sp", "wb") as f:
             f.write(base64.b64encode(Sp.encode('utf-8')))
-        
-    #         f.write(link + '\n')
-    # with open('./links/sp', 'w') as f:
-    #     for link in Fuckme:
-    #         f.write(link + '\n')
 
 if __name__ == "__main__":
     n()
