@@ -74,7 +74,7 @@ def n():
     Sp = ''
     for link in Fuckme:
         #sp = link
-        Sp += link + ' @mfbpn\n'
+        Sp += link + '@mfbpn\n'
     # print(Sp)
     with open("./links/sp", "wb") as f:
             f.write(base64.b64encode(Sp.encode('utf-8')))
