@@ -4,7 +4,7 @@ import uuid
 import urllib3
 # from Crypto.PublicKey import RSA
 # from Crypto.Cipher import PKCS1_OAEP
-# from Crypto.Cipher import AES
+from Crypto.Cipher import AES
 # from Crypto.Hash import MD5
 # from Crypto.Util.Padding import pad, unpad
 # from binascii import a2b_hex, b2a_hex
