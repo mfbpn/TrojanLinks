@@ -2,12 +2,7 @@ import os
 import time
 import uuid
 import urllib3
-# from Crypto.PublicKey import RSA
-# from Crypto.Cipher import PKCS1_OAEP
-from Crypto.Cipher import AES
-# from Crypto.Hash import MD5
-# from Crypto.Util.Padding import pad, unpad
-# from binascii import a2b_hex, b2a_hex
+
 from base64 import b64decode
 from Telegram_bot import send_message
 
