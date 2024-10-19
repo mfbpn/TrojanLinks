@@ -2,7 +2,7 @@ import json
 import os
 import uuid
 from datetime import datetime
-#import urllib3
+import urllib3
 from Crypto.Hash import MD5
 from Crypto.Cipher import AES
 #import urllib.parse
@@ -25,7 +25,7 @@ from urllib.parse import unquote
 
 
 
-#urllib3.disable_warnings()
+urllib3.disable_warnings()
 
 
 
