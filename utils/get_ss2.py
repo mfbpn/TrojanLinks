@@ -78,7 +78,9 @@ if __name__ == '__main__':
     }
     response3 = requests.post(url2, headers=headers2, params=params2)
     phToken  = response3.json().get("data").get("phToken")
+    print(phToken)
     token = response3.json().get("data").get("vpnToken")
+    print(token)
     url3 = os.environ['bzy_url3']
     params3 = {
         'phToken': phToken,
