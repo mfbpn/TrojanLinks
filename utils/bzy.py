@@ -38,13 +38,23 @@ if __name__ == '__main__':
     key_bytes = key_text.encode('utf-8')
     iv_bytes = iv_text.encode('utf-8')
     session = requests.Session()
+    apiurl0 = os.environ['bzy_url0']
+    headers10 = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
+        'Connection': 'Keep-Alive',
+        'Accept-Encoding': 'gzip'
+    }
+    apiurl = requests.get(apiurl0, headers=headers10).text
+    apiurl1=parse.urljoin(apiurl, os.environ['bzy_url']) 
+    apiurl2=parse.urljoin(apiurl, os.environ['bzy_url2'])
+    apiurl3=parse.urljoin(apiurl, os.environ['bzy_url3'])
     headers = {
         'User-Agent': 'Octopus_Android',
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip',
         'Content-Type': 'application/x-www-form-urlencoded'
     }
-    url = os.environ['bzy_url']
+    url = apiurl1
     params = {
         'phoneNumber': uuid,
         'password': '123456',
@@ -55,7 +65,7 @@ if __name__ == '__main__':
     }
 
     token = session.post(url, headers=headers, params=params).json().get("userid")
-    url2 = os.environ['bzy_url2']
+    url2 = apiurl2
     params2 = {
         'phoneNumber': aes_encrypt(key_bytes, iv_bytes, uuid),
         'password': '255A42F2A6863798DBB392033F9D2FD7',
@@ -69,7 +79,7 @@ if __name__ == '__main__':
     response3 = requests.post(url2, headers=headers2, params=params2)
     phToken  = response3.json().get("data").get("phToken")
     token = response3.json().get("data").get("vpnToken")
-    url3 = os.environ['bzy_url3']
+    url3 = apiurl3
     params3 = {
         'phToken': phToken,
         'phoneNumber': uuid
@@ -90,12 +100,12 @@ if __name__ == '__main__':
         'Accept-Encoding': 'gzip'
     }
     response = requests.get(porxy_url, headers=headers4).text
-    abcd = base64.b64decode(response.encode('utf-8')).decode('utf-8').replace("\r\n", " tg@mfbpn\r\n")
-    #print(base64.b64decode(response.encode('utf-8')).decode('utf-8').replace("\r\n", " tg@mfbpn\r\n"))
+    abcd = base64.b64decode(response.encode('utf-8')).decode('utf-8').replace("\r\n", " @𝙢𝙛𝙗𝙥𝙣\r\n")
+    #print(base64.b64decode(response.encode('utf-8')).decode('utf-8').replace("\r\n", " @𝙢𝙛𝙗𝙥𝙣\r\n"))
 
     abcd2 =abcd.replace("hk.bazhuayujiasu.cc", "tg_mfbpn.52cloud.us.kg")
     abcd3 = base64.b64encode(abcd2.encode('utf-8'))
-    print(abcd3)
+    #print(abcd3)
     with open("./links/ss", "wb") as f:
             f.write(abcd3)
     message = '#SS ' + '#订阅' + '\n' + datetime.now().strftime(
