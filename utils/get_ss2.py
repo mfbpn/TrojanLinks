@@ -2,12 +2,11 @@ import json
 import os
 import uuid
 from datetime import datetime
-import urllib3
+#import urllib3
 from Crypto.Hash import MD5
 from Crypto.Cipher import AES
 #import urllib.parse
 from Telegram_bot import send_message
-
 
 import requests
 import random
@@ -23,12 +22,7 @@ from bs4 import BeautifulSoup
 from urllib import parse
 from urllib.parse import unquote
 
-
-
-urllib3.disable_warnings()
-
-
-
+#urllib3.disable_warnings()
 
 if __name__ == '__main__':
     def uuid_a():
@@ -78,9 +72,7 @@ if __name__ == '__main__':
     }
     response3 = requests.post(url2, headers=headers2, params=params2)
     phToken  = response3.json().get("data").get("phToken")
-    print(phToken)
     token = response3.json().get("data").get("vpnToken")
-    print(token)
     url3 = os.environ['bzy_url3']
     params3 = {
         'phToken': phToken,
@@ -94,12 +86,12 @@ if __name__ == '__main__':
     }
 
     porxy_url = requests.post(url3, headers=headers3, params=params3).json().get("data").replace("\\", "")
-    print(porxy_url)
-    # 定义 URL 和参数
-    url = "https://www.otcopusapp.cc/lx3af288h5i8pz380/api/v1/client/subscribe"
-    params = {
-        'token': '1d045ac3eba05ddc55477f1634625683'
-    }
+    # print(porxy_url)
+    # # 定义 URL 和参数
+    # url = "https://www.otcopusapp.cc/lx3af288h5i8pz380/api/v1/client/subscribe"
+    # params = {
+    #     'token': '1d045ac3eba05ddc55477f1634625683'
+    # }
     # 设置请求头
     headers4 = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
@@ -109,18 +101,14 @@ if __name__ == '__main__':
     }
     # 发送 GET 请求
     response = requests.get(porxy_url, headers=headers4).text
-    print(response)
-    # print(base64.b64decode(response))
-    #print(re.sub('#(.*)\\r\\n', 'tg@mfbpn\r\n', base64.b64decode(response)))
     abcd = base64.b64decode(response.encode('utf-8')).decode('utf-8').replace("\r\n", " tg@mfbpn\r\n")
     #print(base64.b64decode(response.encode('utf-8')).decode('utf-8').replace("\r\n", " tg@mfbpn\r\n"))
 
     abcd2 =abcd.replace("hk.bazhuayujiasu.cc", "tg_mfbpn.52cloud.us.kg")
     abcd3 = base64.b64encode(abcd2.encode('utf-8'))
     print(abcd3)
-
     with open("./links/ss", "wb") as f:
             f.write(abcd3)
-    message = '#vmess ' + '#订阅' + '\n' + datetime.now().strftime(
-            "%Y年%m月%d日%H:%M:%S") + '\n' + 'vmess订阅每35分钟自动更新：' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/ss'
+    message = '#SS ' + '#订阅' + '\n' + datetime.now().strftime(
+            "%Y年%m月%d日%H:%M:%S") + '\n' + 'bzy订阅每天自动更新：' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/ss'
     send_message(os.environ['chat_id'], message, os.environ['bot_token'])
