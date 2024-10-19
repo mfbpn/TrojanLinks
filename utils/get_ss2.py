@@ -2,10 +2,8 @@ import json
 import os
 import uuid
 from datetime import datetime
-#import urllib3
 from Crypto.Hash import MD5
 from Crypto.Cipher import AES
-#import urllib.parse
 from Telegram_bot import send_message
 
 import requests
@@ -22,7 +20,6 @@ from bs4 import BeautifulSoup
 from urllib import parse
 from urllib.parse import unquote
 
-#urllib3.disable_warnings()
 
 if __name__ == '__main__':
     def uuid_a():
@@ -58,7 +55,6 @@ if __name__ == '__main__':
     }
 
     token = session.post(url, headers=headers, params=params).json().get("userid")
-    # url2 = "https://app.bazhuayujiasu.cc:18001/netbarcloud/vpn/phLogin.do"
     url2 = os.environ['bzy_url2']
     params2 = {
         'phoneNumber': aes_encrypt(key_bytes, iv_bytes, uuid),
@@ -87,19 +83,12 @@ if __name__ == '__main__':
 
     porxy_url = requests.post(url3, headers=headers3, params=params3).json().get("data").replace("\\", "")
     # print(porxy_url)
-    # # 定义 URL 和参数
-    # url = "https://www.otcopusapp.cc/lx3af288h5i8pz380/api/v1/client/subscribe"
-    # params = {
-    #     'token': '1d045ac3eba05ddc55477f1634625683'
-    # }
-    # 设置请求头
     headers4 = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
         #'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko',
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip'
     }
-    # 发送 GET 请求
     response = requests.get(porxy_url, headers=headers4).text
     abcd = base64.b64decode(response.encode('utf-8')).decode('utf-8').replace("\r\n", " tg@mfbpn\r\n")
     #print(base64.b64decode(response.encode('utf-8')).decode('utf-8').replace("\r\n", " tg@mfbpn\r\n"))
