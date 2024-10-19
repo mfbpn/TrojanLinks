@@ -94,7 +94,7 @@ if __name__ == '__main__':
     }
 
     porxy_url = requests.post(url3, headers=headers3, params=params3).json().get("data").replace("\\", "")
-    #print(porxy_url)
+    print(porxy_url)
     # 定义 URL 和参数
     url = "https://www.otcopusapp.cc/lx3af288h5i8pz380/api/v1/client/subscribe"
     params = {
