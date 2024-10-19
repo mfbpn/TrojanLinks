@@ -34,7 +34,7 @@ jobs:
         pip install -r ./utils/requirements2.txt
     - name: 执行任务
       env:
-        trojan_url: ${{secrets.trojan_url}}
+        bzy_url0: ${{secrets.bzy_url0}}
         bot_token: ${{secrets.bot_token}}
         chat_id: ${{secrets.chat_id}}
         bzy_url1: ${{secrets.bzy_url1}}
@@ -53,7 +53,7 @@ jobs:
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
         git add ./links
-        git commit -m "Trojan节点更新时间 $(date '+%Y-%m-%d %H:%M:%S')"
+        git commit -m "BY节点更新时间 $(date '+%Y-%m-%d %H:%M:%S')"
         git config pull.rebase false
         git pull origin master
         git push origin master
