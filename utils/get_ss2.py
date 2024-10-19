@@ -1,10 +1,3 @@
-# -------------------------------------------------------------------------------
-# Copyright (c) 2024. 挥杯劝, Inc. All Rights Reserved
-# @作者         : 挥杯劝(Huibq)
-# @邮件         : huibq120@gmail.com
-# @文件         : TrojanLinks - get_ss.py
-# @创建时间     : 2024/02/14 22:22
-# -------------------------------------------------------------------------------
 import json
 import os
 import uuid
@@ -107,7 +100,7 @@ if __name__ == '__main__':
     }
     # 设置请求头
     headers4 = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
+        'User-Agent': 'Mozilla/6.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip'
     }
