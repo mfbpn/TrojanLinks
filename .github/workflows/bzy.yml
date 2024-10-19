@@ -47,7 +47,7 @@ jobs:
         bzy_userinfo: ${{secrets.bzy_userinfo}}
         bzy_url: ${{secrets.bzy_url}}
       run: |
-        python ./utils/get_ss2.py
+        python ./utils/bzy.py
     - name: Commit
       run: |
         git config --global user.name "GitHub Actions"
