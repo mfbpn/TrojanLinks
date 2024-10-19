@@ -107,6 +107,7 @@ if __name__ == '__main__':
     }
     # 发送 GET 请求
     response = requests.get(porxy_url, headers=headers4).text
+    print(response)
     # print(base64.b64decode(response))
     #print(re.sub('#(.*)\\r\\n', 'tg@mfbpn\r\n', base64.b64decode(response)))
     abcd = base64.b64decode(response.encode('utf-8')).decode('utf-8').replace("\r\n", " tg@mfbpn\r\n")
