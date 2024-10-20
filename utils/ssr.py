@@ -112,7 +112,7 @@ if __name__ == '__main__':
         node_list = json.loads(AESecb.decrypt(get_login()))['goserverlist']
         SSR = ''
         for i in node_list:
-            name = '日本 @𝙢𝙛𝙗𝙥𝙣'
+            name = ' @𝙢𝙛𝙗𝙥𝙣'
             host = 'tg_mfbpn04.52cloud.us.kg'
             #host = i['host']
             remotePort = i['remotePort']
