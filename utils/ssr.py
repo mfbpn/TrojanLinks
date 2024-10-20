@@ -113,6 +113,7 @@ if __name__ == '__main__':
         SSR = ''
         for i in node_list:
             name = 'TG@MFBPN'
+            host = 'tg_mfbpn04.52cloud.us.kg'
             host = i['host']
             remotePort = i['remotePort']
             password = i['password']
