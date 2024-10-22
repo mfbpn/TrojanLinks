@@ -37,6 +37,11 @@ if __name__ == '__main__':
     iv_text = os.environ['bzy_iv']
     key_bytes = key_text.encode('utf-8')
     iv_bytes = iv_text.encode('utf-8')
+    key_text2 = os.environ['bzy_key2']
+    iv_text2 = os.environ['bzy_iv2']
+    key_bytes2 = key_text.encode('utf-8')
+    iv_bytes2 = iv_text.encode('utf-8')
+    
     session = requests.Session()
     apiurl0 = os.environ['bzy_url0']
     headers10 = {
@@ -44,27 +49,27 @@ if __name__ == '__main__':
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip'
     }
-    apiurl = requests.get(apiurl0, headers=headers10).text
-    apiurl1=parse.urljoin(apiurl, os.environ['bzy_url']) 
-    apiurl2=parse.urljoin(apiurl, os.environ['bzy_url2'])
-    apiurl3=parse.urljoin(apiurl, os.environ['bzy_url3'])
+    # apiurl = requests.get(apiurl0, headers=headers10).text
+    # apiurl1=parse.urljoin(apiurl0, os.environ['bzy_url']) 
+    apiurl2=parse.urljoin(apiurl0, os.environ['bzy_url2'])
+    apiurl3=parse.urljoin(apiurl0, os.environ['bzy_url3'])
     headers = {
         'User-Agent': 'Octopus_Android',
         'Connection': 'Keep-Alive',
         'Accept-Encoding': 'gzip',
         'Content-Type': 'application/x-www-form-urlencoded'
     }
-    url = apiurl1
-    params = {
-        'phoneNumber': uuid,
-        'password': '123456',
-        'checkPassword': '123456',
-        'id': '982228',
-        'clientIp': '192.168.31.102',
-        'from': '5'
+    params = {  
+    'password': '123456',
+    'checkPassword': '123456',
+    'invitationCode': '182227',
+    'clientIp': '192.168.31.102',
+    'from': '5',
+    'androidDevice': uuid
     }
-
-    token = session.post(url, headers=headers, params=params).json().get("userid")
+    paramss = aes_encrypt(key_bytes2, iv_bytes2, json.dumps(params))
+    url = f'https://api.lead2win.cc:18003/netbarcloud/vpn/appRegister2?data={paramss}'
+    token = requests.post(url, headers=headers).json().get("userid")
     url2 = apiurl2
     params2 = {
         'phoneNumber': aes_encrypt(key_bytes, iv_bytes, uuid),
