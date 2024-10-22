@@ -69,10 +69,10 @@ if __name__ == '__main__':
     }
     paramss = aes_encrypt(key_bytes2, iv_bytes2, json.dumps(params))
     url = f'https://api.lead2win.cc:18003/netbarcloud/vpn/appRegister2?data={paramss}'
-    token = requests.post(url, headers=headers).json().get("userid")
+    phonenm = requests.post(url, headers=headers).json().get("data").get("phoneNumber")
     url2 = apiurl2
     params2 = {
-        'phoneNumber': aes_encrypt(key_bytes, iv_bytes, uuid),
+        'phoneNumber': aes_encrypt(key_bytes, iv_bytes, phonenm),
         'password': '255A42F2A6863798DBB392033F9D2FD7',
         'osType': 'android'
     }
