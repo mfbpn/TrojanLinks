@@ -39,8 +39,8 @@ if __name__ == '__main__':
     iv_bytes = iv_text.encode('utf-8')
     key_text2 = os.environ['bzy_key2']
     iv_text2 = os.environ['bzy_iv2']
-    key_bytes2 = key_text.encode('utf-8')
-    iv_bytes2 = iv_text.encode('utf-8')
+    key_bytes2 = key_text2.encode('utf-8')
+    iv_bytes2 = iv_text2.encode('utf-8')
     
     session = requests.Session()
     apiurl0 = os.environ['bzy_url0']
