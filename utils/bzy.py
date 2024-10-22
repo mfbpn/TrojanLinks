@@ -87,7 +87,7 @@ if __name__ == '__main__':
     url3 = apiurl3
     params3 = {
         'phToken': phToken,
-        'phoneNumber': uuid
+        'phoneNumber': phonenm
     }
     headers3 = {
         'User-Agent': 'Octopus_Android',
