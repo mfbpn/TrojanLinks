@@ -97,7 +97,7 @@ if __name__ == '__main__':
     }
 
     porxy_url = requests.post(url3, headers=headers3, params=params3).json().get("data").replace("\\", "")
-    # print(porxy_url)
+    print(porxy_url)
     headers4 = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
         #'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Trident/7.0; rv:11.0) like Gecko',
