@@ -70,6 +70,8 @@ if __name__ == '__main__':
     url = f'https://api.lead2win.cc:18003/netbarcloud/vpn/appRegister2?data={paramss}'
     # print(url)
     phonenm = session.post(url, headers=headers).json().get("data").get("phoneNumber")
+    # phonenm = ''
+    print(phonenm)
     url2 = apiurl2
     params2 = {
         'phoneNumber': aes_encrypt(key_bytes, iv_bytes, phonenm),
