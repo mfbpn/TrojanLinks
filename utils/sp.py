@@ -60,17 +60,18 @@ def n():
     if 'data' not in q:
         print("dashabi")
         return
-    for r in q['data']:
-        if 'ip' in r and r['ip']:
-            r['ip'] = c(r['ip'], o, p)
-        if 'host' in r and r['host']:
-            r['host'] = c(r['host'], o, p)
-        if 'ov_host' in r and r['ov_host']:
-            r['ov_host'] = c(r['ov_host'], o, p)
-        s = r.get('host') or r.get('ip')
-        t = r.get('name', 'sb')
-        u = f"trojan://{b}@{s}:443?allowInsecure=1#{t} "
-        Fuckme.append(u)
+    for r in q["data"]:
+        if "ip" in r and r["ip"]:
+            r["ip"] = c(r["ip"], o, p)
+        if "host" in r and r["host"]:
+            r["host"] = c(r["host"], o, p)
+        if "ov_host" in r and r["ov_host"]:
+            r["ov_host"] = c(r["ov_host"], o, p)
+        if "name" in r and ("Singapore" in r["name"] or "Tokyo" in r["name"]):
+            t = r.get("name", "sb")
+            s = r.get("host") or r.get("ip")
+            u = f"trojan://{b}@{s}:443?allowInsecure=1#{t}"
+            Fuckme.append(u)
     Sp = ''
     for link in Fuckme:
         #sp = link
