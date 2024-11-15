@@ -137,7 +137,7 @@ def fetch_from_api(lines_list_url, node_protocol_url, device_uuid):
         print(f"API 发生错误: {e}")
     for url in urls:
         # urln += url.replace("InBzIjoiMSI", "InBzIjoi8J2ZqfCdmZxA8J2ZovCdmZvwnZmX8J2ZpfCdmaMi") + '\n'
-        urln += url + ' @𝙢𝙛𝙗𝙥𝙣\n'
+        urln += url + ' @mfbpn\n'
     print(urln)    
     with open("./links/sd2", "w") as f:
         f.write(base64.b64encode(urln.encode()).decode())
