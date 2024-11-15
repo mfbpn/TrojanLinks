@@ -107,8 +107,8 @@ if __name__ == '__main__':
         'Accept-Encoding': 'gzip'
     }
     response = requests.get(porxy_url, headers=headers4).text
-    abcd = base64.b64decode(response.encode('utf-8')).decode('utf-8').replace("\r\n", " @𝙢𝙛𝙗𝙥𝙣\r\n")
-    #print(base64.b64decode(response.encode('utf-8')).decode('utf-8').replace("\r\n", " @𝙢𝙛𝙗𝙥𝙣\r\n"))
+    abcd = base64.b64decode(response.encode('utf-8')).decode('utf-8').replace("\r\n", " @mfbpn\r\n")
+    #print(base64.b64decode(response.encode('utf-8')).decode('utf-8').replace("\r\n", " @mfbpn\r\n"))
 
     abcd2 =abcd.replace("hk.bazhuayujiasu.cc", "tg_mfbpn.52cloud.us.kg")
     abcd3 = base64.b64encode(abcd2.encode('utf-8'))
