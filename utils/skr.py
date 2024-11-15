@@ -43,7 +43,7 @@ if j.status_code == 200:
         p = f"aes-256-cfb:{o['password']}@{o['ip']}:{o['port']}"
         q = base64.b64encode(p.encode('utf-8')).decode('utf-8')
         r = f"ss://{q}#{o['title']}"
-        skr += r + ' @𝙢𝙛𝙗𝙥𝙣\n'
+        skr += r + ' @mfbpn\n'
     print(skr)
     with open("./links/skr", "w") as f:
         f.write(base64.b64encode(skr.encode()).decode())
