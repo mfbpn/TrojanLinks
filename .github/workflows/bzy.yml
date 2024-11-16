@@ -44,6 +44,7 @@ jobs:
         bzy_iv: ${{secrets.bzy_iv}}
         bzy_key2: ${{secrets.bzy_key2}}
         bzy_iv2: ${{secrets.bzy_iv2}}
+        bzy_email: ${{secrets.bzy_email}}
         bzy_headers: ${{secrets.bzy_headers}}
         bzy_headers2: ${{secrets.bzy_headers2}}
         bzy_userinfo: ${{secrets.bzy_userinfo}}
