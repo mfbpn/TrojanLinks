@@ -181,7 +181,7 @@ if __name__ == '__main__':
     # print(url)
     phonenm = session.post(url, headers=headers).json().get("data").get("phoneNumber")
     # phonenm = os.environ['bzy_email']
-    print(phonenm)
+    # print(phonenm)
     url2 = apiurl2
     params2 = {
         'phoneNumber': aes_encrypt(key_bytes, iv_bytes, phonenm),
