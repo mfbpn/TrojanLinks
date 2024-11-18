@@ -203,7 +203,7 @@ if __name__ == '__main__':
     params5 = {
         "phoneNumber": mail,
         "vpnAccount": phonenm,
-        "SMSCode": emailnator.get_verification_link(mail),
+        #"SMSCode": emailnator.get_verification_link(mail),
         "phToken": phToken,
     }
 
