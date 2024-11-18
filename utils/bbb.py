@@ -215,9 +215,9 @@ if __name__ == '__main__':
         "password": "255A42F2A6863798DBB392033F9D2FD7",
         "osType": "android",
     }
-    response3 = requests.post(url2, headers=headers2, params=params2)
-    phToken = response3.json().get("data").get("phToken")
-    token = response3.json().get("data").get("vpnToken")
+    #response3 = requests.post(url2, headers=headers2, params=params2)
+   # phToken = response3.json().get("data").get("phToken")
+   # token = response3.json().get("data").get("vpnToken")
 
     url3 = apiurl3
     params3 = {
@@ -231,7 +231,7 @@ if __name__ == '__main__':
         'Accept-Encoding': 'gzip'
     }
 
-    porxy_url = requests.post(url3, headers=headers3, params=params3).json().get("data").replace("\\", "")
+    #porxy_url = requests.post(url3, headers=headers3, params=params3).json().get("data").replace("\\", "")
     print(porxy_url)
     porxy_url = 'https://www.otcopusapp.cc/lx3af288h5i8pz380/api/v1/client/subscribe?token=62f05804007c78e5fa309504eb6a33e8'
     headers4 = {
