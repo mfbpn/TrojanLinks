@@ -1,0 +1,62 @@
+name: getBZY2
+
+# 触发条件
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: '0 16 * * *'
+
+env: # 设置环境变量
+  TZ: Asia/Shanghai
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 迁出代码
+      uses: actions/checkout@v2
+    - name: 安装Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: 加载缓存
+      uses: actions/cache@v2
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/run_in_Actions/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+    - name: 设置时区
+      run: sudo timedatectl set-timezone 'Asia/Shanghai'
+    - name: 安装依赖
+      run: |
+        pip install -r ./utils/requirements2.txt
+    - name: 执行任务
+      env:
+        bzy_url0: ${{secrets.bzy_url0}}
+        bot_token: ${{secrets.bot_token}}
+        chat_id: ${{secrets.chat_id}}
+        bzy_url1: ${{secrets.bzy_url1}}
+        bzy2_url2: ${{secrets.bzy2_url2}}
+        bzy2_url3: ${{secrets.bzy2_url3}}
+        bzy2_key: ${{secrets.bzy_key}}
+        bzy2_iv: ${{secrets.bzy_iv}}
+        bzy2_key2: ${{secrets.bzy_key2}}
+        bzy2_iv2: ${{secrets.bzy_iv2}}
+        bzy_email: ${{secrets.bzy_email}}
+        bzy_headers: ${{secrets.bzy_headers}}
+        bzy_headers2: ${{secrets.bzy_headers2}}
+        bzy_userinfo: ${{secrets.bzy_userinfo}}
+        bzy_url: ${{secrets.bzy_url}}
+      run: |
+        python ./utils/bzy2.py
+    - name: Commit
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
+        git add ./links
+        git commit -m "BY节点更新时间 $(date '+%Y-%m-%d %H:%M:%S')"
+        git config pull.rebase false
+        git pull origin master
+        git push origin master
