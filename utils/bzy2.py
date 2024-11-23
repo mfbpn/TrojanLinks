@@ -72,7 +72,7 @@ if __name__ == '__main__':
     url = f'https://api.ymvpnpro.cc:8700/netbarcloud/vpn/appRegister2?data={paramss}'
     # print(url)
     phonenm = session.post(url, headers=headers).json().get("data").get("phoneNumber")
-    phonenm = os.environ['bzy_email']
+    # phonenm = os.environ['bzy_email']
     print(phonenm)
     url2 = apiurl2
     params2 = {
