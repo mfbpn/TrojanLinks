@@ -215,7 +215,7 @@ if __name__ == '__main__':
         "password": "255A42F2A6863798DBB392033F9D2FD7",
         "osType": "android",
     }
-    #response3 = requests.post(url2, headers=headers2, params=params2)
+   response3 = requests.post(url2, headers=headers2, params=params2)
    phToken = response3.json().get("data").get("phToken")
    token = response3.json().get("data").get("vpnToken")
 
