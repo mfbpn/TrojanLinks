@@ -33,17 +33,17 @@ if __name__ == '__main__':
         ciphertext = cipher.encrypt(padded_plaintext)
         return binascii.hexlify(ciphertext).decode().upper() # 强制大写字母
 
-    key_text = os.environ['bzy_key']
-    iv_text = os.environ['bzy_iv']
+    key_text = os.environ['bzy2_key']
+    iv_text = os.environ['bzy2_iv']
     key_bytes = key_text.encode('utf-8')
     iv_bytes = iv_text.encode('utf-8')
-    key_text2 = os.environ['bzy_key2']
-    iv_text2 = os.environ['bzy_iv2']
+    key_text2 = os.environ['bzy2_key2']
+    iv_text2 = os.environ['bzy2_iv2']
     key_bytes2 = key_text2.encode('utf-8')
     iv_bytes2 = iv_text2.encode('utf-8')
     
     session = requests.Session()
-    apiurl0 = os.environ['bzy_url0']
+    # apiurl0 = os.environ['bzy_url0']
     headers10 = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
         'Connection': 'Keep-Alive',
@@ -51,8 +51,10 @@ if __name__ == '__main__':
     }
     # apiurl = requests.get(apiurl0, headers=headers10).text
     # apiurl1=parse.urljoin(apiurl0, os.environ['bzy_url']) 
-    apiurl2=parse.urljoin(apiurl0, os.environ['bzy_url2'])
-    apiurl3=parse.urljoin(apiurl0, os.environ['bzy_url3'])
+    # apiurl2=parse.urljoin(apiurl0, os.environ['bzy2_url2'])
+    # apiurl3=parse.urljoin(apiurl0, os.environ['bzy2_url3'])
+    apiurl2= os.environ['bzy2_url2']
+    apiurl3= os.environ['bzy2_url3']
     headers = {
         'User-Agent': 'Octopus_Android',
         'Connection': 'Keep-Alive',
@@ -67,7 +69,7 @@ if __name__ == '__main__':
     'androidDevice': uuid
     }
     paramss = aes_encrypt(key_bytes2, iv_bytes2, json.dumps(params))
-    url = f'https://api.lead2win.cc:18003/netbarcloud/vpn/appRegister2?data={paramss}'
+    url = f'https://api.ymvpnpro.cc:8700/netbarcloud/vpn/appRegister2?data={paramss}'
     # print(url)
     phonenm = session.post(url, headers=headers).json().get("data").get("phoneNumber")
     phonenm = os.environ['bzy_email']
