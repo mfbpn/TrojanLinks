@@ -25,7 +25,7 @@ from urllib.parse import unquote
 class Emailnator:
     def __init__(self):
         self.base_url = os.environ['bzy_urlcode']
-        self.session = httpx.Client()
+        self.session = httpx.Client(timeout=httpx.Timeout(10.0, connect=10.0))
 
         # 设置初始请求头
         self._setup_headers()
@@ -67,7 +67,8 @@ class Emailnator:
             return None
 
     def fetch_messages(self, mail: str):
-        while True:
+        attempts = 0
+        while attempts < 4:
             try:
                 response = self.session.post(
                     self.base_url + "message-list", json={"email": mail}
@@ -76,7 +77,10 @@ class Emailnator:
                 return response.json()["messageData"]
             except Exception as e:
                 # logger.warning(f"获取邮件列表失败: {e}")
-                time.sleep(5)
+                attempts += 1
+                if attempts < 4:
+                    time.sleep(5)
+                
 
     def extract_verification_info(self, message):
         # 匹配包含“八爪鱼”的验证码邮件信息
