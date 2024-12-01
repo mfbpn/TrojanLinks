@@ -5,6 +5,7 @@ from datetime import datetime
 import base64
 
 def parse_proxies_and_convert(url):
+    global SS_link
     try:
         # 下载配置文件
         response = requests.get(url)
@@ -31,7 +32,8 @@ def parse_proxies_and_convert(url):
 
                 if all([cipher, password, server, port]):
                     ss_link = f"ss://{cipher}:{password}@{server}:{port}#{name}"
-                    print(ss_link)
+                    SS_link += ss_link + " @𝙢𝙛𝙗𝙥𝙣\n"
+                    # print(ss_link)
                 else:
                     print(f"代理 {name} 的信息不完整，跳过")
     except requests.RequestException as e:
@@ -39,7 +41,8 @@ def parse_proxies_and_convert(url):
     except yaml.YAMLError as e:
         print(f"解析YAML失败: {e}")
 
-
+SS_link = ""
 # URL 指向目标配置文件
 url = os.environ['bzydz_url']
 parse_proxies_and_convert(url)
+print(SS_link)
