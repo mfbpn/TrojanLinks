@@ -29,7 +29,7 @@ class AESCipher:
     def encrypt(self, data):
         cipher = AES.new(self.key, AES.MODE_ECB)
         ct_bytes = cipher.encrypt(pad(data.encode(), AES.block_size))
-        ct = hexlify(ct_bytes).decode('utf-8')
+        ct = hexlify(ct_bytes).decode("utf-8")
         return ct
 
     def decrypt(self, ct):
@@ -37,101 +37,128 @@ class AESCipher:
             ct = unhexlify(ct)
             cipher = AES.new(self.key, AES.MODE_ECB)
             pt = unpad(cipher.decrypt(ct), AES.block_size)
-            return pt.decode('utf-8')
+            return pt.decode("utf-8")
         except Exception as e:
             print(e)
             return "Incorrect decryption"
 
 
-k = os.environ['key']
-host = os.environ['host']
-host_1 = os.environ['host_1']
-host_2 = os.environ['host_2']
+k = os.environ["key"]
+host = os.environ["host"]
+host_1 = os.environ["host_1"]
+host_2 = os.environ["host_2"]
 
 AESecb = AESCipher(k)
 Id = str(uuid.uuid4()).replace("-", "")
 
 
 def web():
-    url = f'https://{host}/?share=Mzc4MDUxODITUBEVPN'
+    url = f"https://{host}/?share=Mzc4MDUxODITUBEVPN"
     headers = {
-        'upgrade-insecure-requests': '1',
-        'user-agent': 'Mozilla/5.0 (Linux; U; Android 7.1.0; zh-cn; MI 9 Build/OPM1.171019.011) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/61.0.3163.128 Mobile Safari/537.36 XiaoMi/MiuiBrowser/9.5.5',
-        'x-miorigin': 'b',
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-        'accept-encoding': 'gzip, deflate',
-        'accept-language': 'zh-CN,en-US;q=0.8',
+        "upgrade-insecure-requests": "1",
+        "user-agent": "Mozilla/5.0 (Linux; U; Android 7.1.0; zh-cn; MI 9 Build/OPM1.171019.011) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/61.0.3163.128 Mobile Safari/537.36 XiaoMi/MiuiBrowser/9.5.5",
+        "x-miorigin": "b",
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
+        "accept-encoding": "gzip, deflate",
+        "accept-language": "zh-CN,en-US;q=0.8",
     }
     requests.get(url, headers=headers, verify=False)
 
 
 def add_share():
-    url = f'https://{host_1}/share/add_share'
+    url = f"https://{host_1}/share/add_share"
     headers = {
-        'user-agent': 'Mozilla/5.0 (Linux; U; Android 7.1.0; zh-cn; MI 9 Build/OPM1.171019.011) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/61.0.3163.128 Mobile Safari/537.36 XiaoMi/MiuiBrowser/9.5.5',
-        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        'content-length': '0',
-        'accept-encoding': 'gzip, deflate',
-        'accept': 'application/json, text/javascript, */*; q=0.01',
-        'origin': f'https://{host_1}',
-        'referer': f'https://{host_1}/?share=Mzc4MDUxODITUBEVPN',
-        'accept-language': 'zh-CN,en-US;q=0.8',
+        "user-agent": "Mozilla/5.0 (Linux; U; Android 7.1.0; zh-cn; MI 9 Build/OPM1.171019.011) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/61.0.3163.128 Mobile Safari/537.36 XiaoMi/MiuiBrowser/9.5.5",
+        "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "content-length": "0",
+        "accept-encoding": "gzip, deflate",
+        "accept": "application/json, text/javascript, */*; q=0.01",
+        "origin": f"https://{host_1}",
+        "referer": f"https://{host_1}/?share=Mzc4MDUxODITUBEVPN",
+        "accept-language": "zh-CN,en-US;q=0.8",
     }
-    data = {
-        'str': 'MjExMDc1NDMTUBEVPN'
-    }
+    data = {"str": "MjExMDc1NDMTUBEVPN"}
     req = requests.post(url, headers=headers, data=data, verify=False)
     print(req.text)
 
 
 def get_login():
-    url = f'https://{host_2}/node/getInformation_ex'
+    url = f"https://{host_2}/node/getInformation_ex"
     headers = {
-        'user-agent': 'Mozilla/5.0 (Linux; Android 11; M2007J17C Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/127.0.6533.64 Mobile Safari/537.36',
-        'content-type': 'application/x-www-form-urlencoded',
-        'content-length': '407',
-        'accept-encoding': 'gzip',
+        "user-agent": "Mozilla/5.0 (Linux; Android 11; M2007J17C Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/127.0.6533.64 Mobile Safari/537.36",
+        "content-type": "application/x-www-form-urlencoded",
+        "content-length": "407",
+        "accept-encoding": "gzip",
     }
     text = f'{{"imei":"{Id}","platform":"android","version_number":58,"models":"M2007J17C","sdk":"30","m":"AF9650E2172392113DCCD46E81046CC9","c":4}}'
     value = AESecb.encrypt(text).upper()
     now = datetime.now()
     formatted_time = now.strftime("%Y年%m月%d日%H:%M:%S")
     data = {
-        't': formatted_time,
-        'value': value,
+        "t": formatted_time,
+        "value": value,
     }
     req = requests.post(url, headers=headers, data=data, verify=False)
-    return req.json()['data']
+    return req.json()["data"]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         web()
         add_share()
         time.sleep(4)
-        node_list = json.loads(AESecb.decrypt(get_login()))['goserverlist']
-        SSR = ''
+        node_list = json.loads(AESecb.decrypt(get_login()))["goserverlist"]
+        SSR = ""
         for i in node_list:
-            name = ' @𝙢𝙛𝙗𝙥𝙣'
+            # name = ' @𝙢𝙛𝙗𝙥𝙣'
+            if "日本" in i["name"]:
+                name = "日本 @mfbpn"
+            elif "新加坡" in i["name"]:
+                name = "新家皮 @mfbpn"
+            else:
+                name = "未匹配"
             # host = 'tg_mfbpn04.52cloud.us.kg'
-            host = i['host']
-            remotePort = i['remotePort']
-            password = i['password']
-            protocol = i['protocol']
-            protocol_param = i['protocol_param']
-            obfs = i['obfs']
-            #obfsparam = 'tg@mfbpn'
-            method = i['method']
-            nodeinfo = host + ':' + str(
-                remotePort) + ':' + protocol + ':' + method + ':' + obfs + ':' + base64.urlsafe_b64encode(
-                password.encode()).decode() + '/?' + f'obfsparam=&protoparam={base64.urlsafe_b64encode(protocol_param.encode()).decode().strip("=")}&remarks={base64.urlsafe_b64encode(name.encode()).decode().rstrip("=")}&group='
-            ssr = 'ssr://' + base64.urlsafe_b64encode(nodeinfo.encode()).decode().rstrip("=")
-            SSR += ssr + '\n'
+            host = i["host"]
+            remotePort = i["remotePort"]
+            password = i["password"]
+            protocol = i["protocol"]
+            protocol_param = i["protocol_param"]
+            obfs = i["obfs"]
+            # obfsparam = 'tg@mfbpn'
+            method = i["method"]
+            nodeinfo = (
+                host
+                + ":"
+                + str(remotePort)
+                + ":"
+                + protocol
+                + ":"
+                + method
+                + ":"
+                + obfs
+                + ":"
+                + base64.urlsafe_b64encode(password.encode()).decode()
+                + "/?"
+                + f'obfsparam=&protoparam={base64.urlsafe_b64encode(protocol_param.encode()).decode().strip("=")}&remarks={base64.urlsafe_b64encode(name.encode()).decode().rstrip("=")}&group='
+            )
+            ssr = "ssr://" + base64.urlsafe_b64encode(
+                nodeinfo.encode()
+            ).decode().rstrip("=")
+            SSR += ssr + "\n"
             if i == node_list[19]:
                 break
         with open("./links/ssr", "w") as f:
             f.write(base64.b64encode(SSR.encode()).decode())
     except Exception as E:
         print(E)
-    message = '#ssr ' + '#订阅' + '\n' + datetime.now().strftime("%Y年%m月%d日%H:%M:%S") + '\n' + 'ssr订阅每天自动更新：' + '\n' + 'https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/ssr'
-    send_message(os.environ['chat_id'], message, os.environ['bot_token'])
+    message = (
+        "#ssr "
+        + "#订阅"
+        + "\n"
+        + datetime.now().strftime("%Y年%m月%d日%H:%M:%S")
+        + "\n"
+        + "ssr订阅每天自动更新："
+        + "\n"
+        + "https://raw.githubusercontent.com/mfbpn/TrojanLinks/master/links/ssr"
+    )
+    send_message(os.environ["chat_id"], message, os.environ["bot_token"])
