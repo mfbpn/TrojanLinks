@@ -31,7 +31,9 @@ def parse_proxies_and_convert(url):
                 port = proxy.get("port")
 
                 if all([cipher, password, server, port]):
-                    ss_link = "ss://" + base64.urlsafe_b64encode(f"{cipher}:{password}@{server}:{port}#{name}").decode()
+                    encoded_part = f"{cipher}:{password}@{server}:{port}".encode("utf-8")
+                    base64_encoded = base64.urlsafe_b64encode(encoded_part).decode("utf-8").rstrip("=")
+                    ss_link = f"ss://{base64_encoded}#{name}"
                     SS_link += ss_link + " @mfbpn\n"
                     # SS_link += ss_link+ "\n"
                     # print(ss_link)
