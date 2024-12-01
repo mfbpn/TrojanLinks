@@ -31,9 +31,9 @@ def parse_proxies_and_convert(url):
                 port = proxy.get("port")
 
                 if all([cipher, password, server, port]):
-                    ss_link = f"ss://{cipher}:{password}@{server}:{port}#{name}"
-                    # SS_link += ss_link + " @mfbpn\n"
-                    SS_link += ss_link+ "\n"
+                    ss_link = "ss://" + base64.urlsafe_b64encode(f"{cipher}:{password}@{server}:{port}#{name}").decode()
+                    SS_link += ss_link + " @mfbpn\n"
+                    # SS_link += ss_link+ "\n"
                     # print(ss_link)
                 else:
                     print(f"代理 {name} 的信息不完整，跳过")
