@@ -46,3 +46,5 @@ SS_link = ""
 url = os.environ['bzydz_url']
 parse_proxies_and_convert(url)
 print(SS_link)
+with open("./links/ss", "w") as f:
+    f.write(base64.b64encode(SS_link.encode()).decode())
