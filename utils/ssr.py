@@ -114,11 +114,11 @@ if __name__ == "__main__":
             if "日本" in i["name"]:
                 name = "日本 @mfbpn"
             elif "新加坡" in i["name"]:
-                name = "新家皮 @mfbpn"
+                name = "新加坡 @mfbpn"
             else:
                 name = "未匹配"
-            # host = 'tg_mfbpn04.52cloud.us.kg'
-            host = i["host"]
+            host = 'tg_mfbpn05.52cloud.us.kg'
+            # host = i["host"]
             remotePort = i["remotePort"]
             password = i["password"]
             protocol = i["protocol"]
