@@ -3,6 +3,7 @@ import yaml
 import os
 from datetime import datetime
 import base64
+from urllib.parse import quote
 
 def parse_proxies_and_convert(url):
     SS_link = ""
@@ -33,9 +34,9 @@ def parse_proxies_and_convert(url):
                 if all([cipher, password, server, port]):
                     credentials = f"{cipher}:{password}"
                     credentials_base64 = base64.urlsafe_b64encode(credentials.encode()).decode().rstrip('=')
-                    
+                    name_encoded = quote(name)
                     # 构造 SS 链接
-                    ss_link = f"ss://{credentials_base64}@{server}:{port}#{name} @mfbpn\n"
+                    ss_link = f"ss://{credentials_base64}@{server}:{port}#{name_encoded} @mfbpn\n"
                     # SS_link += ss_link + " @mfbpn\n"
                     SS_link += ss_link
                     # print(ss_link)
