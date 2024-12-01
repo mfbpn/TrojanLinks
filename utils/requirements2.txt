@@ -3,4 +3,4 @@ pycryptodome
 beautifulsoup4
 pyaes
 httpx
-yaml
+pyyaml
