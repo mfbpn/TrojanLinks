@@ -5,7 +5,7 @@ from datetime import datetime
 import base64
 
 def parse_proxies_and_convert(url):
-    global SS_link
+    SS_link = ""
     try:
         # 下载配置文件
         response = requests.get(url)
@@ -20,7 +20,7 @@ def parse_proxies_and_convert(url):
             print("未找到代理信息")
             return
 
-        print("以下是转换后的SS链接：\n")
+        # print("以下是转换后的SS链接：\n")
         for proxy in proxies:
             if proxy.get("type") == "ss":
                 # 构造SS链接
@@ -37,6 +37,9 @@ def parse_proxies_and_convert(url):
                     # print(ss_link)
                 else:
                     print(f"代理 {name} 的信息不完整，跳过")
+        print(SS_link)
+        with open("./links/ss", "w") as f:
+            f.write(base64.b64encode(SS_link.encode()).decode())
     except requests.RequestException as e:
         print(f"请求失败: {e}")
     except yaml.YAMLError as e:
@@ -46,6 +49,4 @@ SS_link = ""
 # URL 指向目标配置文件
 url = os.environ['bzydz_url']
 parse_proxies_and_convert(url)
-print(SS_link)
-with open("./links/ss", "w") as f:
-    f.write(base64.b64encode(SS_link.encode()).decode())
+
