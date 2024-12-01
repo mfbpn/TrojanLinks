@@ -35,7 +35,7 @@ def parse_proxies_and_convert(url):
                     credentials_base64 = base64.urlsafe_b64encode(credentials.encode()).decode().rstrip('=')
                     
                     # 构造 SS 链接
-                    ss_link = f"ss://{credentials_base64}@{server}:{port}#{name}@mfbpn\n"
+                    ss_link = f"ss://{credentials_base64}@{server}:{port}#{name} @mfbpn\n"
                     # SS_link += ss_link + " @mfbpn\n"
                     SS_link += ss_link
                     # print(ss_link)
