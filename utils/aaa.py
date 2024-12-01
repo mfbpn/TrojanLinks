@@ -31,9 +31,11 @@ def parse_proxies_and_convert(url):
                 port = proxy.get("port")
 
                 if all([cipher, password, server, port]):
-                    encoded_part = f"{cipher}:{password}@{server}:{port}".encode("utf-8")
-                    base64_encoded = base64.urlsafe_b64encode(encoded_part).decode("utf-8").rstrip("=")
-                    ss_link = f"ss://{base64_encoded}#{name}"
+                    credentials = f"{cipher}:{password}"
+                    credentials_base64 = base64.urlsafe_b64encode(credentials.encode()).decode().rstrip('=')
+                    
+                    # 构造 SS 链接
+                    ss_link = f"ss://{credentials_base64}@{server}:{port}#{name}"
                     SS_link += ss_link + " @mfbpn\n"
                     # SS_link += ss_link+ "\n"
                     # print(ss_link)
