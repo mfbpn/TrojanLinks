@@ -117,7 +117,7 @@ if __name__ == "__main__":
                 name = "新加坡 @mfbpn"
             else:
                 name = "未匹配"
-            host = 'tg_mfbpn05.52cloud.us.kg'
+            host = 'tg_mfbpn06.52cloud.us.kg'
             # host = i["host"]
             remotePort = i["remotePort"]
             password = i["password"]
