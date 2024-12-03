@@ -252,7 +252,7 @@ if __name__ == '__main__':
     abcd2 =abcd.replace("hk.bazhuayujiasu.cc", "tg_mfbpn.52cloud.us.kg")
     abcd3 = base64.b64encode(abcd2.encode('utf-8'))
     #print(abcd3)
-    with open("./links/ss", "wb") as f:
+    with open("./links/ccc", "wb") as f:
             f.write(abcd3)
     message = '#SS ' + '#订阅' + '\n' + datetime.now().strftime(
             "%Y年%m月%d日%H:%M:%S") + '\n' + 'bzy订阅每天自动更新bbb：' + '\n' + f'{porxy_url}'
