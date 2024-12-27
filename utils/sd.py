@@ -139,7 +139,7 @@ def fetch_from_api(lines_list_url, node_protocol_url, device_uuid):
         # urln += url.replace("InBzIjoiMSI", "InBzIjoi8J2ZqfCdmZxA8J2ZovCdmZvwnZmX8J2ZpfCdmaMi") + '\n'
         urln += url + ' @mfbpn\n'
     print(urln)    
-    with open("./links/sd2", "w") as f:
+    with open("./links/sd3", "w") as f:
         f.write(base64.b64encode(urln.encode()).decode())
     #save_to_file(urls)
 
@@ -154,7 +154,7 @@ if __name__ == "__main__":
     # )
 
     fetch_from_api(
-        "http://api.deke7.cn/vpn/lines_list",
-        "http://api.deke7.cn/vpn/node_protocol",
+        "http://api.mivpc.cn/vpn/lines_list",
+        "http://api.mivpc.cn/vpn/node_protocol",
         device_uuid,
     )
