@@ -18,7 +18,7 @@ if __name__ == '__main__':
     c = os.environ['skr2_c']
     d = os.environ['skr_d']
     e = os.environ['skr_e']
-    b = headers = {
+    b = {
         "User-Agent": "okhttp/3.8.0",
         "Connection": "Keep-Alive",
         "Accept-Encoding": "gzip",
