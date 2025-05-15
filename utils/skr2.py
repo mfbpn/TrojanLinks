@@ -34,6 +34,7 @@ def f(g, d, e):
     return i[:-i[-1]]
 
 j = requests.post(a, headers=b, data=c)
+print(c)
 skr = ''
 if j.status_code == 200:
     k = j.text.strip()
