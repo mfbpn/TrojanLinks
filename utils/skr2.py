@@ -15,8 +15,12 @@ from datetime import datetime
 
 if __name__ == '__main__':
     a = os.environ['skr_a']
-    c = os.environ['skr2_c']
-    print(c)
+    # c = os.environ['skr2_c']
+    c = {
+        "time": "1747303695",
+        "token": "99fa19a64cfb4674bd5fc1a10ec1740f",
+        "data": "8F1352301A8D4B4F6F80A6DDC2A8E7FB096CE5FE65D6D7AF1230BC6EE07944AFA2767165897426386AEACDD208858AA10BF5CDC6B59801936A4D5905A23629B9915CC8464FAB3D037A29DC0501FE80F6D3681B6BE6C876842BFA8671B80FACAA485F7F9A12F06B94759BB42962AA7388",
+    }
     d = os.environ['skr_d']
     e = os.environ['skr_e']
     b = {
@@ -26,7 +30,7 @@ if __name__ == '__main__':
         "devicetype": "1",
         "bundleid": "com.skr.shadowsocks",
         "appversion": "1.0.6",
-        "accountid": "406496",
+
     }
 
 def f(g, d, e):
