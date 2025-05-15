@@ -16,6 +16,7 @@ from datetime import datetime
 if __name__ == '__main__':
     a = os.environ['skr_a']
     c = os.environ['skr2_c']
+    print(c)
     d = os.environ['skr_d']
     e = os.environ['skr_e']
     b = {
