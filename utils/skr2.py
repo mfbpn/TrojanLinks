@@ -40,7 +40,7 @@ skr = ''
 if j.status_code == 200:
     k = j.text.strip()
     l = binascii.unhexlify(k)
-    m = f(l, d, e)
+    m = f(l, d.encode(), e.encode())
     n = json.loads(m)
     for o in n['data']:
         p = f"aes-256-cfb:{o['password']}@{o['ip']}:{o['port']}"
