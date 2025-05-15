@@ -18,13 +18,14 @@ if __name__ == '__main__':
     c = os.environ['skr2_c']
     d = os.environ['skr_d']
     e = os.environ['skr_e']
-    b = {
-        'accept': '/',
-        'accept-language': 'zh-Hans-CN;q=1, en-CN;q=0.9',
-        'appversion': '1.3.1',
-        'user-agent': 'SkrKK/1.3.1 (iPhone; iOS 13.5; Scale/2.00)',
-        'content-type': 'application/x-www-form-urlencoded',
-        'Cookie': 'PHPSESSID=fnffo1ivhvt0ouo6ebqn86a0d4'
+    b = headers = {
+        "User-Agent": "okhttp/3.8.0",
+        "Connection": "Keep-Alive",
+        "Accept-Encoding": "gzip",
+        "devicetype": "1",
+        "bundleid": "com.skr.shadowsocks",
+        "appversion": "1.0.6",
+        "accountid": "406496",
     }
 
 def f(g, d, e):
